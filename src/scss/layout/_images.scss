@@ -1,0 +1,55 @@
+@use '../util/' as u;
+
+img{
+    width: 400px;
+    height: 400px;
+    border-radius: 200px;
+    
+    &:hover{
+        cursor: pointer;
+        box-shadow: 5px 5px 15px rgba(0,0,0, 0.5);
+    }
+    
+    &:active{
+        position: relative;
+        top: 4px;
+    }
+
+    @include u.breakpoint(large){
+        width: 300px;
+        height: 300px;
+
+    }
+
+    @include u.breakpoint(medium){
+        width: 150px;
+        height: 150px;
+    }
+}
+
+#gryffindor:hover{
+    background-color: #A50D0E;
+
+}
+#slytherin:hover{
+    background-color: #114610;
+
+}
+#ravenclaw:hover{
+    background-color: #065C7E;
+
+}
+#hufflepuff:hover{
+    background-color: #AF8410;
+
+}
+
+.images{
+    height:max-content;
+    display: flex;
+    justify-content:space-around;
+    gap: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}

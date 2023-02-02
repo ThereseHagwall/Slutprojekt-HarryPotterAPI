@@ -1,0 +1,1 @@
+// import {person} from "./interface";

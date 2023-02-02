@@ -1,0 +1,25 @@
+{
+  "name": "slutprojekt-harrypotterapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThereseHagwall/Slutprojekt-HarryPotterAPI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThereseHagwall/Slutprojekt-HarryPotterAPI/issues"
+  },
+  "homepage": "https://github.com/ThereseHagwall/Slutprojekt-HarryPotterAPI#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.3",
+    "parcel": "^2.8.3"
+  }
+}
