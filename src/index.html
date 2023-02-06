@@ -10,36 +10,46 @@
             href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap"
             rel="stylesheet"
         />
-        <link type="text/html" rel="stylesheet" href="../dist/css/main.css" />
+        <link type="text/css" rel="stylesheet" href="../dist/css/main.css" />
         <link
-            type="text/html"
+            type="text/css"
             rel="stylesheet"
             href="../dist/css/layout/index.css"
         />
-        <script type="text/html" defer src="../dist/js/app.js"></script>
+        <script defer src="../dist/js/app.js"></script>
         <title>Harry Potter Database</title>
     </head>
     <body>
         <h1 id="header">Harry Potter Database</h1>
         <h2>Choose your favorite house</h2>
         <main class="container">
-            <section>
-                <legend>SEARCH</legend>
-                <input list="search" />
-                <datalist id="search">
-                    <option value="Gryffindor"></option>
-                    <option value="Slytherin"></option>
-                    <option value="Hufflepuff"></option>
-                    <option value="Ravenclaw"></option></datalist
-                ><button id="searchButton">Search</button>
-            </section>
             <section class="images">
-                <img id="gryffindor" src="images/clipart1985985.png" alt="" />
-                <img id="slytherin" src="images/clipart2302214.png" alt="" />
-                <img id="hufflepuff" src="images/clipart667282.png" alt="" />
-                <img id="ravenclaw" src="images/clipart667335.png" alt="" />
+                <img
+                    class="images"
+                    id="gryffindor"
+                    src="images/clipart1985985.png"
+                    alt=""
+                />
+                <img
+                    class="images"
+                    id="slytherin"
+                    src="images/clipart2302214.png"
+                    alt=""
+                />
+                <img
+                    class="images"
+                    id="hufflepuff"
+                    src="images/clipart667282.png"
+                    alt=""
+                />
+                <img
+                    class="images"
+                    id="ravenclaw"
+                    src="images/clipart667335.png"
+                    alt=""
+                />
             </section>
-            <button>No favorite</button>
+            <button id="noFavorite">No favorite</button>
         </main>
     </body>
 </html>
