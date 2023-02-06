@@ -39,7 +39,7 @@ async function getHouseInfo(x:string){
     img.src = data.image_url;        
 }
 
-//Listner of the what choise the user make.
+//Listner of what choise the user make.
 gryffindor.addEventListener('click', (e) => {
     e.preventDefault();
     container.innerHTML = '';  
