@@ -1,6 +1,10 @@
 // import {person} from "./interface";
 
+//Url to fetch from
 const baseUrl = 'https://legacy--api.herokuapp.com/api/v1/houses/';
+const charUrl = 'https://hp-api.onrender.com/api/characters';
+const spellUrl = 'https://hp-api.onrender.com/api/spells';
+
 //Get some elements from html
 const allImages = [...document.querySelectorAll('.images')];
 const noFavorite = document.querySelector('#noFavorite') as HTMLButtonElement;
@@ -40,7 +44,8 @@ for(let i = 1; i < allImages.length; i++) {
     allImages[i].addEventListener('click', () => {
         container.innerHTML = '';  
         getHouseInfo(i);
-        
+        getSpellInfo();
+        getCharInfo();
     })
 }
 
@@ -66,3 +71,44 @@ noFavorite.addEventListener('click', function(e){
     getAllHouseInfo();
 })
 
+async function getCharInfo(){
+    const response = await fetch(charUrl)
+    const data = await response.json();
+
+    for(let i = 0; i < data.length; i++){
+        const charCard = document.createElement('section');
+        let charName = document.createElement('h3');
+        let img = document.createElement('img');
+
+        charName.innerHTML = data[i].name;
+        img.src = data[i].image;
+        
+        container.append(charCard);
+        charCard.append(charName, img);
+        
+        if(data[i].image === ''){
+            charCard.removeChild(img);
+        }
+    }
+
+}
+
+async function getSpellInfo(){
+    const response = await fetch(spellUrl)
+    const data = await response.json();
+
+    console.log(data);
+    const spellSection = document.createElement('section');
+    container.append(spellSection);
+
+    for(let i = 0; i < data.length; i++){
+        let spellName = document.createElement('p');
+        let spellInfo = document.createElement('p');
+
+        spellName.innerHTML = data[i].name;
+        spellInfo = data[i].description;
+
+        spellSection.append(spellName, spellInfo);
+    }
+
+}
