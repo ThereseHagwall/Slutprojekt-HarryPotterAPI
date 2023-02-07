@@ -33,3 +33,27 @@ button{
         box-shadow: 0 5px 25px 0;
     }
 }
+
+.charCard{
+    display: flex;
+    flex-direction: column-reverse;
+    border: 10px solid u.$gryffindorborder;
+    width: 350px;
+    background-color: u.$gryffindor;
+    align-items: center;
+    font-size: 20px;
+    color: #ffff;
+    margin: 10px;
+}
+
+.spellCard{
+    display: flex;
+    flex-direction: column-reverse;
+    border: 10px solid u.$ravenclawborder;
+    background-color: u.$ravenclaw;
+    color: #ffff;
+    width: 350px;
+    font-size: 16px;
+    align-items: center;
+    margin: 10px;
+}
