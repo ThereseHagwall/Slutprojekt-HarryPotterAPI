@@ -75,40 +75,48 @@ async function getCharInfo(){
     const response = await fetch(charUrl)
     const data = await response.json();
 
-    for(let i = 0; i < data.length; i++){
-        const charCard = document.createElement('section');
-        let charName = document.createElement('h3');
-        let img = document.createElement('img');
+    const charHeader = document.createElement('h3');
+    const list = document.createElement('ul');
+    const charCard = document.createElement('section');
+    const more = document.createElement('p');
+    more.innerHTML = 'View All';
+    
+    charCard.append(more);
 
-        charName.innerHTML = data[i].name;
-        img.src = data[i].image;
-        
+    charCard.className = 'charCard';
+    charHeader.innerHTML = 'Characters';
+    
+    for(let i = 0; i < 5; i++){
+        let charName = document.createElement('p');
+        charName.innerHTML += `<li>${data[i].name}</li>`;
+        list.append(charName);
         container.append(charCard);
-        charCard.append(charName, img);
-        
-        if(data[i].image === ''){
-            charCard.removeChild(img);
-        }
+        charCard.append(list, charHeader);
     }
-
 }
 
 async function getSpellInfo(){
     const response = await fetch(spellUrl)
     const data = await response.json();
 
-    console.log(data);
-    const spellSection = document.createElement('section');
-    container.append(spellSection);
+    const spellHeader = document.createElement('h3');
+    const list = document.createElement('ul');
+    const spellCard = document.createElement('section');
+    const more = document.createElement('p');
+    more.innerHTML = 'View All';
 
-    for(let i = 0; i < data.length; i++){
+    spellCard.append(more);
+    
+    spellCard.className ='spellCard';
+    spellHeader.innerHTML = 'Spells';
+    
+    for(let i = 0; i < 5; i++){
         let spellName = document.createElement('p');
-        let spellInfo = document.createElement('p');
-
-        spellName.innerHTML = data[i].name;
-        spellInfo = data[i].description;
-
-        spellSection.append(spellName, spellInfo);
+        spellName.innerHTML += `<li>${data[i].name}</li> Description: ${data[i].description}`;
+        
+        list.append(spellName);
+        spellCard.append(list, spellHeader);
+        container.append(spellCard);
     }
 
 }
