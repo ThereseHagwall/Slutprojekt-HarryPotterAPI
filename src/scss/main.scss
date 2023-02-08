@@ -9,14 +9,14 @@ body{
 
 .container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 button{
     font-family: u.$font;
     background-color: #F6DC4F;
     border-radius: 20px;
-    width: 20rem;;
+    width: 15rem;;
     height: 3rem;
     font-size: 30px;
     border: 3px outset grey;
@@ -38,12 +38,13 @@ button{
     display: flex;
     flex-direction: column-reverse;
     border: 10px solid u.$gryffindorborder;
-    width: 350px;
+    min-width: 350px;
     background-color: u.$gryffindor;
     align-items: center;
     font-size: 20px;
     color: #ffff;
     margin: 10px;
+    justify-content: flex-end;
 }
 
 .spellCard{
@@ -52,8 +53,26 @@ button{
     border: 10px solid u.$ravenclawborder;
     background-color: u.$ravenclaw;
     color: #ffff;
-    width: 350px;
+    min-width: 350px;
     font-size: 16px;
     align-items: center;
     margin: 10px;
+    justify-content: flex-end;
+}
+
+.houseCard{
+    display: flex;
+    flex-direction: column-reverse;
+    border: 10px solid u.$hufflepuffborder;
+    background-color: u.$hufflepuff;
+    color: u.$hufflepufftext;
+    min-width: 350px;
+    font-size: 16px;
+    align-items: center;
+    margin: 10px;
+
+    & > img {
+        width: 25%;
+        height: 25%;
+    }
 }
