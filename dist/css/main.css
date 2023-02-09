@@ -1,0 +1,189 @@
+#header {
+  display: flex;
+  justify-content: center;
+  font-family: "Pirata One", cursive;
+  font-size: 130px;
+  -webkit-text-stroke: 0.01px black;
+  /* Create the gradient. */
+  background-image: linear-gradient(0.25turn, #740001, #1a472a, #ecb939, #0e1a40);
+  /* Set the background size and repeat properties. */
+  background-size: 54%;
+  background-repeat: repeat;
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  margin: 0;
+}
+@media (max-width: 56.25em) {
+  #header {
+    font-size: 100px;
+    text-align: center;
+  }
+}
+@media (max-width: 43.75em) {
+  #header {
+    font-size: 70px;
+    text-align: center;
+  }
+}
+
+h2 {
+  font-family: "Pirata One", cursive;
+  font-size: 64px;
+  text-align: center;
+  margin-bottom: 90px;
+  margin-top: 10px;
+  color: black;
+}
+@media (max-width: 56.25em) {
+  h2 {
+    font-size: 35px;
+  }
+}
+
+h3 {
+  font-size: 24px;
+}
+
+img {
+  width: 370px;
+  height: 370px;
+  border-radius: 200px;
+}
+img:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+img:active {
+  position: relative;
+  top: 4px;
+}
+@media (max-width: 56.25em) {
+  img {
+    width: 300px;
+    height: 300px;
+  }
+}
+@media (max-width: 43.75em) {
+  img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+#gryffindor:hover {
+  background-color: #A50D0E;
+}
+
+#slytherin:hover {
+  background-color: #114610;
+}
+
+#ravenclaw:hover {
+  background-color: #065C7E;
+}
+
+#hufflepuff:hover {
+  background-color: #AF8410;
+}
+
+.images {
+  height: max-content;
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+body {
+  background-color: #726255;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+button {
+  font-family: "Pirata One", cursive;
+  background-color: #F6DC4F;
+  border-radius: 20px;
+  width: 15rem;
+  height: 3rem;
+  font-size: 30px;
+  border: 3px outset grey;
+  align-self: center;
+}
+button:active {
+  position: relative;
+  left: 3px;
+  top: 3px;
+}
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 25px 0;
+}
+
+.charCard {
+  display: flex;
+  flex-direction: column;
+  border: 10px solid #d3a625;
+  min-width: 350px;
+  background-color: #740001;
+  align-items: center;
+  font-size: 20px;
+  color: white;
+  margin: 10px;
+}
+
+.spellCard {
+  display: flex;
+  flex-direction: column;
+  border: 10px solid #372e29;
+  background-color: #ecb939;
+  color: white;
+  min-width: 350px;
+  font-size: 16px;
+  align-items: center;
+  margin: 10px;
+}
+
+.favoriteCard {
+  display: flex;
+  flex-direction: column;
+  border: 10px solid #aaaaaa;
+  background-color: #1a472a;
+  color: white;
+  min-width: 350px;
+  font-size: 16px;
+  align-items: center;
+  margin: 10px;
+}
+
+.houseCardSection {
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  font-size: 16px;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 18px;
+}
+.houseCardSection > img {
+  width: 25%;
+  height: 35%;
+}
+
+.allHousesSection {
+  display: flex;
+  color: white;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=main.css.map */
