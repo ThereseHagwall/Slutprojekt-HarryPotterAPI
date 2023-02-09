@@ -5,7 +5,7 @@ const baseUrl = 'https://legacy--api.herokuapp.com/api/v1/houses/';
 const charUrl = 'https://hp-api.onrender.com/api/characters';
 const spellUrl = 'https://hp-api.onrender.com/api/spells';
 
-//Get some elements from html
+//Get some elements from html and create som elements
 const body = document.querySelector('body') as HTMLBodyElement;
 const allImages = [...document.querySelectorAll('.images')];
 const noFavorite = document.querySelector('#noFavorite') as HTMLButtonElement;
@@ -31,7 +31,7 @@ async function getHouseInfo(x:number):Promise <void>{
     let img = document.createElement('img');
     
     container.append(card);
-    card.className = 'houseCard';
+    card.className = 'houseCardSection';
     card.append(houseName, founder, animal, traits, element, colors, ghost, commonRoom, img);
     
     houseName.innerHTML = `${data.name}`;
@@ -49,17 +49,17 @@ async function getHouseInfo(x:number):Promise <void>{
 
 function getColor(x:number):void{
     if(x === 1){
-        gryffindor();
+        gryffindorColor();
     }else if(x === 2){
-        slytherin();
+        slytherinColor();
     }else if(x === 3){
-        hufflepuff();
+        hufflepuffColor();
     }else if(x === 4){
-        ravenclaw();
+        ravenclawColor();
     }
 }
 
-function gryffindor():void{
+function gryffindorColor():void{
     card.style.backgroundColor = '#740001';
     card.style.border = '10px solid #d3a625';
     card.style.color = '#ffff'
@@ -74,7 +74,7 @@ function gryffindor():void{
     favoritesCard.style.color = '#ffff';
 }
 
-function slytherin():void{
+function slytherinColor():void{
     card.style.backgroundColor = '#1a472a';
     card.style.border = '10px solid #aaaaaa';
     card.style.color = '#ffff'
@@ -89,7 +89,7 @@ function slytherin():void{
     favoritesCard.style.color = '#ffff';
 }
 
-function hufflepuff():void{
+function hufflepuffColor():void{
     card.style.backgroundColor = '#ecb939';
     card.style.border = '10px solid #372e29';
     card.style.color = '#372e29'
@@ -104,7 +104,7 @@ function hufflepuff():void{
     favoritesCard.style.color = '#372e29';
 }
 
-function ravenclaw():void{
+function ravenclawColor():void{
     card.style.backgroundColor = '#0e1a40';
     card.style.border = '10px solid #946b2d';
     card.style.color = '#ffff'

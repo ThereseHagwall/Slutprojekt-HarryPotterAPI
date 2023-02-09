@@ -33,7 +33,7 @@ function getHouseInfo(x) {
         let commonRoom = document.createElement('p');
         let img = document.createElement('img');
         container.append(card);
-        card.className = 'houseCard';
+        card.className = 'houseCardSection';
         card.append(houseName, founder, animal, traits, element, colors, ghost, commonRoom, img);
         houseName.innerHTML = `${data.name}`;
         founder.innerHTML = `Founder: ${data.founder}`;
@@ -49,19 +49,19 @@ function getHouseInfo(x) {
 }
 function getColor(x) {
     if (x === 1) {
-        gryffindor();
+        gryffindorColor();
     }
     else if (x === 2) {
-        slytherin();
+        slytherinColor();
     }
     else if (x === 3) {
-        hufflepuff();
+        hufflepuffColor();
     }
     else if (x === 4) {
-        ravenclaw();
+        ravenclawColor();
     }
 }
-function gryffindor() {
+function gryffindorColor() {
     card.style.backgroundColor = '#740001';
     card.style.border = '10px solid #d3a625';
     card.style.color = '#ffff';
@@ -75,7 +75,7 @@ function gryffindor() {
     favoritesCard.style.border = '10px solid #d3a625';
     favoritesCard.style.color = '#ffff';
 }
-function slytherin() {
+function slytherinColor() {
     card.style.backgroundColor = '#1a472a';
     card.style.border = '10px solid #aaaaaa';
     card.style.color = '#ffff';
@@ -89,7 +89,7 @@ function slytherin() {
     favoritesCard.style.border = '10px solid #aaaaaa';
     favoritesCard.style.color = '#ffff';
 }
-function hufflepuff() {
+function hufflepuffColor() {
     card.style.backgroundColor = '#ecb939';
     card.style.border = '10px solid #372e29';
     card.style.color = '#372e29';
@@ -103,7 +103,7 @@ function hufflepuff() {
     favoritesCard.style.border = '10px solid #372e29';
     favoritesCard.style.color = '#372e29';
 }
-function ravenclaw() {
+function ravenclawColor() {
     card.style.backgroundColor = '#0e1a40';
     card.style.border = '10px solid #946b2d';
     card.style.color = '#ffff';
