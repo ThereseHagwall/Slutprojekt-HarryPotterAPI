@@ -11,6 +11,8 @@ const allImages = [...document.querySelectorAll('.images')];
 const noFavorite = document.querySelector('#noFavorite') as HTMLButtonElement;
 const container = document.querySelector('.container') as HTMLDivElement;
 const card = document.createElement('section');
+const charCard = document.createElement('section');
+const spellCard = document.createElement('section');
 
 //A function to fetch the information about the house the user choose.
 async function getHouseInfo(x:number){
@@ -41,22 +43,50 @@ async function getHouseInfo(x:number){
     commonRoom.innerHTML = `Common Room: ${data.common_room}`;
     img.src = data.image_url;   
     
+    getColor(x);
+}
+
+function getColor(x:number){
     if(x === 1){
         card.style.backgroundColor = '#740001';
         card.style.border = '10px solid #d3a625';
         card.style.color = '#ffff'
+        charCard.style.backgroundColor = '#740001';
+        charCard.style.border = '10px solid #d3a625';
+        charCard.style.color = '#ffff'
+        spellCard.style.backgroundColor = '#740001';
+        spellCard.style.border = '10px solid #d3a625';
+        spellCard.style.color = '#ffff'
     }else if(x === 2){
         card.style.backgroundColor = '#1a472a';
         card.style.border = '10px solid #aaaaaa';
         card.style.color = '#ffff'
+        charCard.style.backgroundColor = '#1a472a';
+        charCard.style.border = '10px solid #aaaaaa';
+        charCard.style.color = '#ffff'
+        spellCard.style.backgroundColor = '#1a472a';
+        spellCard.style.border = '10px solid #aaaaaa';
+        spellCard.style.color = '#ffff'
     }else if(x === 3){
         card.style.backgroundColor = '#ecb939';
         card.style.border = '10px solid #372e29';
         card.style.color = '#372e29'
+        charCard.style.backgroundColor = '#ecb939';
+        charCard.style.border = '10px solid #372e29';
+        charCard.style.color = '#372e29'
+        spellCard.style.backgroundColor = '#ecb939';
+        spellCard.style.border = '10px solid #372e29';
+        spellCard.style.color = '#372e29'
     }else if(x === 4){
         card.style.backgroundColor = '#0e1a40';
         card.style.border = '10px solid #946b2d';
         card.style.color = '#ffff'
+        charCard.style.backgroundColor = '#0e1a40';
+        charCard.style.border = '10px solid #946b2d';
+        charCard.style.color = '#ffff'
+        spellCard.style.backgroundColor = '#0e1a40';
+        spellCard.style.border = '10px solid #946b2d';
+        spellCard.style.color = '#ffff'
     }
 }
 
@@ -101,7 +131,7 @@ themesRadio.forEach(radioButton => {
     });
 });
 
-//A listner to de No favorite Button.
+//A listner to No favorite Button.
 noFavorite.addEventListener('click', function(e){
     e.preventDefault();
     container.innerHTML = '';  
@@ -115,7 +145,7 @@ noFavorite.addEventListener('click', function(e){
         label.innerHTML =  (`<input class="radiobutton" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
         body.append(label);
     }       
-    //A function to get all housenames and images 
+    //A function to fetch all housenames and images 
     async function getAllHouseInfo(){
         const response = await fetch(`${baseUrl}`);
         const data = await response.json();
@@ -144,17 +174,16 @@ async function getCharInfo(x:number){
     
     const charHeader = document.createElement('h3');
     const list = document.createElement('ul');
-    const charCard = document.createElement('section');
-    const more = document.createElement('p');
-    more.innerHTML = 'View All';
-    
-    more.addEventListener('click', (e) =>{
+    const viewMore = document.createElement('button');
+    viewMore.innerHTML = 'View All';
+    charCard.append(viewMore);
+
+    viewMore.addEventListener('click', (e) =>{
         e.preventDefault();
         container.innerHTML = '';
         getCharInfo(data.length);
-    })
-    
-    charCard.append(more);
+        viewMore.innerHTML = 'View Less';
+    }) 
     
     charCard.className = 'charCard';
     charHeader.innerHTML = 'Characters';
@@ -176,11 +205,10 @@ async function getSpellInfo(x:number){
 
     const spellHeader = document.createElement('h3');
     const list = document.createElement('ul');
-    const spellCard = document.createElement('section');
-    const more = document.createElement('p');
-    more.innerHTML = 'View All';
+    const viewMore = document.createElement('button');
+    viewMore.innerHTML = 'View All';
 
-    spellCard.append(more);
+    spellCard.append(viewMore);
     
     spellCard.className ='spellCard';
     spellHeader.innerHTML = 'Spells';
@@ -195,11 +223,10 @@ async function getSpellInfo(x:number){
         container.append(spellCard);
     }
 
-    more.addEventListener('click', (e) =>{
+    viewMore.addEventListener('click', (e) =>{
         e.preventDefault();
         container.innerHTML = '';
         getSpellInfo(data.length);
-        more.innerHTML = '';
 })
 
 }
