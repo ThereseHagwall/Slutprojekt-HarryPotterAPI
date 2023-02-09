@@ -10,6 +10,7 @@ body{
 .container{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 button{
@@ -36,7 +37,7 @@ button{
 
 .charCard{
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     border: 10px solid u.$gryffindorborder;
     min-width: 350px;
     background-color: u.$gryffindor;
@@ -44,35 +45,51 @@ button{
     font-size: 20px;
     color: #ffff;
     margin: 10px;
-    justify-content: flex-end;
 }
 
 .spellCard{
     display: flex;
-    flex-direction: column-reverse;
-    border: 10px solid u.$ravenclawborder;
-    background-color: u.$ravenclaw;
+    flex-direction: column;
+    border: 10px solid u.$hufflepuffborder;
+    background-color: u.$hufflepuff;
     color: #ffff;
     min-width: 350px;
     font-size: 16px;
     align-items: center;
     margin: 10px;
-    justify-content: flex-end;
 }
-
-.houseCard{
+.favoriteCard{
     display: flex;
-    flex-direction: column-reverse;
-    border: 10px solid u.$hufflepuffborder;
-    background-color: u.$hufflepuff;
-    color: u.$hufflepufftext;
+    flex-direction: column;
+    border: 10px solid u.$slytherinborder;
+    background-color: u.$slytherin;
+    color: #ffff;
     min-width: 350px;
     font-size: 16px;
     align-items: center;
     margin: 10px;
+}
 
+.houseCardSection{
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+    font-size: 16px;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 18px;
+    
     & > img {
         width: 25%;
-        height: 25%;
+        height: 35%;
     }
+    
+}
+
+
+.allHousesSection{
+    display: flex;
+    color: #ffff;
+    justify-content: center;
+
 }
