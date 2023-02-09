@@ -13,9 +13,10 @@ const container = document.querySelector('.container') as HTMLDivElement;
 const card = document.createElement('section');
 const charCard = document.createElement('section');
 const spellCard = document.createElement('section');
+const favoritesCard = document.createElement('section');
 
 //A function to fetch the information about the house the user choose.
-async function getHouseInfo(x:number){
+async function getHouseInfo(x:number):Promise <void>{
     const response = await fetch(baseUrl+x);
     const data = await response.json();
     
@@ -46,48 +47,77 @@ async function getHouseInfo(x:number){
     getColor(x);
 }
 
-function getColor(x:number){
+function getColor(x:number):void{
     if(x === 1){
-        card.style.backgroundColor = '#740001';
-        card.style.border = '10px solid #d3a625';
-        card.style.color = '#ffff'
-        charCard.style.backgroundColor = '#740001';
-        charCard.style.border = '10px solid #d3a625';
-        charCard.style.color = '#ffff'
-        spellCard.style.backgroundColor = '#740001';
-        spellCard.style.border = '10px solid #d3a625';
-        spellCard.style.color = '#ffff'
+        gryffindor();
     }else if(x === 2){
-        card.style.backgroundColor = '#1a472a';
-        card.style.border = '10px solid #aaaaaa';
-        card.style.color = '#ffff'
-        charCard.style.backgroundColor = '#1a472a';
-        charCard.style.border = '10px solid #aaaaaa';
-        charCard.style.color = '#ffff'
-        spellCard.style.backgroundColor = '#1a472a';
-        spellCard.style.border = '10px solid #aaaaaa';
-        spellCard.style.color = '#ffff'
+        slytherin();
     }else if(x === 3){
-        card.style.backgroundColor = '#ecb939';
-        card.style.border = '10px solid #372e29';
-        card.style.color = '#372e29'
-        charCard.style.backgroundColor = '#ecb939';
-        charCard.style.border = '10px solid #372e29';
-        charCard.style.color = '#372e29'
-        spellCard.style.backgroundColor = '#ecb939';
-        spellCard.style.border = '10px solid #372e29';
-        spellCard.style.color = '#372e29'
+        hufflepuff();
     }else if(x === 4){
-        card.style.backgroundColor = '#0e1a40';
-        card.style.border = '10px solid #946b2d';
-        card.style.color = '#ffff'
-        charCard.style.backgroundColor = '#0e1a40';
-        charCard.style.border = '10px solid #946b2d';
-        charCard.style.color = '#ffff'
-        spellCard.style.backgroundColor = '#0e1a40';
-        spellCard.style.border = '10px solid #946b2d';
-        spellCard.style.color = '#ffff'
+        ravenclaw();
     }
+}
+
+function gryffindor():void{
+    card.style.backgroundColor = '#740001';
+    card.style.border = '10px solid #d3a625';
+    card.style.color = '#ffff'
+    charCard.style.backgroundColor = '#740001';
+    charCard.style.border = '10px solid #d3a625';
+    charCard.style.color = '#ffff'
+    spellCard.style.backgroundColor = '#740001';
+    spellCard.style.border = '10px solid #d3a625';
+    spellCard.style.color = '#ffff';
+    favoritesCard.style.backgroundColor = '#740001';
+    favoritesCard.style.border = '10px solid #d3a625';
+    favoritesCard.style.color = '#ffff';
+}
+
+function slytherin():void{
+    card.style.backgroundColor = '#1a472a';
+    card.style.border = '10px solid #aaaaaa';
+    card.style.color = '#ffff'
+    charCard.style.backgroundColor = '#1a472a';
+    charCard.style.border = '10px solid #aaaaaa';
+    charCard.style.color = '#ffff'
+    spellCard.style.backgroundColor = '#1a472a';
+    spellCard.style.border = '10px solid #aaaaaa';
+    spellCard.style.color = '#ffff';
+    favoritesCard.style.backgroundColor = '#1a472a';
+    favoritesCard.style.border = '10px solid #aaaaaa';
+    favoritesCard.style.color = '#ffff';
+}
+
+function hufflepuff():void{
+    card.style.backgroundColor = '#ecb939';
+    card.style.border = '10px solid #372e29';
+    card.style.color = '#372e29'
+    charCard.style.backgroundColor = '#ecb939';
+    charCard.style.border = '10px solid #372e29';
+    charCard.style.color = '#372e29'
+    spellCard.style.backgroundColor = '#ecb939';
+    spellCard.style.border = '10px solid #372e29';
+    spellCard.style.color = '#372e29';
+    favoritesCard.style.backgroundColor = '#ecb939';
+    favoritesCard.style.border = '10px solid #372e29';
+    favoritesCard.style.color = '#372e29';
+}
+
+function ravenclaw():void{
+    card.style.backgroundColor = '#0e1a40';
+    card.style.border = '10px solid #946b2d';
+    card.style.color = '#ffff'
+    charCard.style.backgroundColor = '#0e1a40';
+    charCard.style.border = '10px solid #946b2d';
+    charCard.style.color = '#ffff'
+    spellCard.style.backgroundColor = '#0e1a40';
+    spellCard.style.border = '10px solid #946b2d';
+    spellCard.style.color = '#ffff';
+    favoritesCard.style.backgroundColor = '#0e1a40';
+    favoritesCard.style.border = '10px solid #946b2d';
+    favoritesCard.style.color = '#ffff';
+    
 }
 
 //Array to store all housenames and Nohouse = hogwarts
@@ -118,13 +148,14 @@ for(let i = 1; i < allImages.length; i++) {
         getHouseInfo(i);
         getSpellInfo(6);
         getCharInfo(8);
+        favoritesSection();
     })
 }
 
 let themesRadio = Array.from(document.querySelectorAll('.radiobutton'));   
 
 themesRadio.forEach(radioButton => {
-    radioButton.addEventListener('click', (event) => {
+    radioButton.addEventListener('change', (event) => {
         event.preventDefault();
         console.log('changed');
         
@@ -146,43 +177,52 @@ noFavorite.addEventListener('click', function(e){
         body.append(label);
     }       
     //A function to fetch all housenames and images 
-    async function getAllHouseInfo(){
-        const response = await fetch(`${baseUrl}`);
-        const data = await response.json();
-        
-        for(let i = 0; i < data.length; i++){
+    async function getAllHouseInfo():Promise <void>{
+        for(let i = 1; i < 5; i++){
 
-            let houseName = document.createElement('h2');
-            let img = document.createElement('img');
-            
+            const response = await fetch(baseUrl + i);
+            const data = await response.json();
             container.append(card);
-            card.append(houseName, img);
             
-            houseName.textContent = `${data[i].name}`;
-            img.src = data[i].image_url; 
+            const infoSec = document.createElement('section');
+            let houseName = document.createElement('h3');
+            let founder = document.createElement('p');
+            let img = document.createElement('img');
+
+            card.append(infoSec);
+            infoSec.append(houseName, founder, img);
+            
+            houseName.textContent = `${data.name}`;
+            founder.innerHTML = `Founder: ${data.founder}`;
+            img.src = data.image_url; 
+            infoSec.className = 'houseCardSection';
+
+            card.className = 'allHousesSection';
+    
+            card.style.backgroundColor = '#0e1a40';
+            card.style.border = '10px solid #946b2d';
         }
     }
+    favoritesSection();
     getAllHouseInfo();
     getSpellInfo(6);
     getCharInfo(8);
 })
 
 //A function to fetch the information about characters
-async function getCharInfo(x:number){
+async function getCharInfo(x:number):Promise <void>{
     const response = await fetch(charUrl)
     const data = await response.json();
     
     const charHeader = document.createElement('h3');
     const list = document.createElement('ul');
-    const viewMore = document.createElement('button');
+    const viewMore = document.createElement('p');
     viewMore.innerHTML = 'View All';
-    charCard.append(viewMore);
-
+    
     viewMore.addEventListener('click', (e) =>{
         e.preventDefault();
         container.innerHTML = '';
         getCharInfo(data.length);
-        viewMore.innerHTML = 'View Less';
     }) 
     
     charCard.className = 'charCard';
@@ -194,21 +234,21 @@ async function getCharInfo(x:number){
         charName.innerHTML += `<li>${data[i].name}</li>`;
         list.append(charName);
         container.append(charCard);
-        charCard.append(list, charHeader);
+        charCard.append(charHeader, list);
     }
+    charCard.append(viewMore);
 }
 
 //A function to fetch the information about spells
-async function getSpellInfo(x:number){
+async function getSpellInfo(x:number):Promise <void>{
     const response = await fetch(spellUrl)
     const data = await response.json();
 
     const spellHeader = document.createElement('h3');
     const list = document.createElement('ul');
-    const viewMore = document.createElement('button');
+    const viewMore = document.createElement('p');
     viewMore.innerHTML = 'View All';
 
-    spellCard.append(viewMore);
     
     spellCard.className ='spellCard';
     spellHeader.innerHTML = 'Spells';
@@ -219,14 +259,29 @@ async function getSpellInfo(x:number){
         spellName.innerHTML += `<li>${data[i].name}</li> Description: ${data[i].description}`;
         
         list.append(spellName);
-        spellCard.append(list, spellHeader);
+        spellCard.append(spellHeader, list);
         container.append(spellCard);
     }
-
+    
     viewMore.addEventListener('click', (e) =>{
         e.preventDefault();
         container.innerHTML = '';
         getSpellInfo(data.length);
-})
+    })
+    spellCard.append(viewMore);
 
 }
+
+function favoritesSection():void{
+    const favoriteHeader = document.createElement('h3');
+    const list = document.createElement('ul');
+    const favorite = document.createElement('p');
+
+    container.append(favoritesCard);
+    favoritesCard.append(list, favoriteHeader, favorite);
+    favoritesCard.className = 'favoriteCard';
+    favoriteHeader.innerHTML = 'Favorites';
+    favorite.innerHTML = `Your favorites stores here`;
+    
+}
+
