@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/ThereseHagwall/Slutprojekt-HarryPotterAPI/issues"
   },
-  "homepage": "https://github.com/ThereseHagwall/Slutprojekt-HarryPotterAPI"
+  "homepage": "https://github.com/ThereseHagwall/Slutprojekt-HarryPotterAPI",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "gh-pages": "^1.2.0",
+    "parcel-bundler": "^1.9.7",
+    "typescript": "^2.9.2"
+}
 }
