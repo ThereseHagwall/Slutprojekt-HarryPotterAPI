@@ -39,50 +39,55 @@ button{
     display: flex;
     flex-direction: column;
     border: 10px solid u.$gryffindorborder;
-    min-width: 350px;
+    padding: 0 3em 0 3em;
     background-color: u.$gryffindor;
     align-items: center;
     font-size: 20px;
     color: #ffff;
-    margin: 10px;
+    margin: 0 auto;
 }
 
 .spellCard{
     display: flex;
     flex-direction: column;
     border: 10px solid u.$hufflepuffborder;
+    padding: 0 2em 0 2em;
     background-color: u.$hufflepuff;
     color: #ffff;
-    min-width: 350px;
-    font-size: 16px;
+    font-size: 20px;
     align-items: center;
-    margin: 10px;
+    margin: 0 auto;
 }
 
 .favoriteCard{
     display: flex;
     flex-direction: column;
     border: 10px solid u.$slytherinborder;
+    padding: 0 3em 0 3em;
     background-color: u.$slytherin;
     color: #ffff;
-    min-width: 350px;
     font-size: 16px;
     align-items: center;
-    margin: 10px;
+    margin: 0 auto;
 }
 
 .houseCardSection{
     display: flex;
     flex-direction: column;
-    min-width: 350px;
-    font-size: 16px;
+    padding: 0 1em 0 1em;
     align-items: center;
     margin: 0 auto;
     font-size: 18px;
     
     & > img {
-        width: 25%;
-        height: 35%;
+        width: 35%;
+        height: 45%;
+    }
+
+    & > p{
+        word-wrap: break-word;
+        display: flex;
+        flex-wrap: wrap;
     }
     
 }

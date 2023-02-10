@@ -15,6 +15,7 @@ const body = document.querySelector('body');
 const allImages = [...document.querySelectorAll('.images')];
 const noFavorite = document.querySelector('#noFavorite');
 const container = document.querySelector('.container');
+const chooseYourFavo = document.querySelector('h2');
 const card = document.createElement('section');
 const charCard = document.createElement('section');
 const spellCard = document.createElement('section');
@@ -131,26 +132,28 @@ for (let i = 1; i < allImages.length; i++) {
         body.append(text);
         for (let i = 0; i < houseArr.length; i++) {
             const label = document.createElement('label');
-            label.innerHTML = (`<input class="radiobutton" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
+            label.innerHTML = (`<input class="radiobuttons" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
             body.append(label);
         }
         container.innerHTML = '';
+        chooseYourFavo.remove();
         getHouseInfo(i);
         getSpellInfo(6);
         getCharInfo(8);
         favoritesSection();
+        console.log(themesRadio);
     });
 }
-let themesRadio = Array.from(document.querySelectorAll('.radiobutton'));
+let themesRadio = Array.from([...document.querySelectorAll('.radiobuttons')]);
 themesRadio.forEach(radioButton => {
-    radioButton.addEventListener('change', (event) => {
-        event.preventDefault();
+    radioButton.addEventListener('change', () => {
         console.log('changed');
     });
 });
 noFavorite.addEventListener('click', function (e) {
     e.preventDefault();
     container.innerHTML = '';
+    chooseYourFavo.remove();
     const text = document.createElement('p');
     text.innerHTML = 'Change theme:';
     body.append(text);
@@ -188,6 +191,7 @@ noFavorite.addEventListener('click', function (e) {
 });
 function getCharInfo(x) {
     return __awaiter(this, void 0, void 0, function* () {
+        charCard.innerHTML = '';
         const response = yield fetch(charUrl);
         const data = yield response.json();
         const charHeader = document.createElement('h3');
@@ -213,6 +217,7 @@ function getCharInfo(x) {
 }
 function getSpellInfo(x) {
     return __awaiter(this, void 0, void 0, function* () {
+        spellCard.innerHTML = '';
         const response = yield fetch(spellUrl);
         const data = yield response.json();
         const spellHeader = document.createElement('h3');

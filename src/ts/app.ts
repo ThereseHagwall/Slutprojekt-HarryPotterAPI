@@ -1,5 +1,6 @@
 // import {person} from "./interface";
 
+
 //Url to fetch from
 const baseUrl = 'https://legacy--api.herokuapp.com/api/v1/houses/';
 const charUrl = 'https://hp-api.onrender.com/api/characters';
@@ -10,13 +11,20 @@ const body = document.querySelector('body') as HTMLBodyElement;
 const allImages = [...document.querySelectorAll('.images')];
 const noFavorite = document.querySelector('#noFavorite') as HTMLButtonElement;
 const container = document.querySelector('.container') as HTMLDivElement;
+const chooseYourFavo = document.querySelector('h2') as HTMLElement;
 const card = document.createElement('section');
 const charCard = document.createElement('section');
 const spellCard = document.createElement('section');
 const favoritesCard = document.createElement('section');
 
+// const loading = document.createElement("img");
+// loading.className = "loading";
+// loading.src = "loading.gif";
+
+
 //A function to fetch the information about the house the user choose.
 async function getHouseInfo(x:number):Promise <void>{
+
     const response = await fetch(baseUrl+x);
     const data = await response.json();
     
@@ -140,23 +148,24 @@ for(let i = 1; i < allImages.length; i++) {
         //Loop through the array to create radiobuttons and put listner to everyone.
         for(let i = 0; i < houseArr.length; i++) {
             const label = document.createElement('label');
-            label.innerHTML =  (`<input class="radiobutton" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
+            label.innerHTML =  (`<input class="radiobuttons" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
             body.append(label);
         }
 
-        container.innerHTML = '';  
+        container.innerHTML = '';
+        chooseYourFavo.remove();  
         getHouseInfo(i);
         getSpellInfo(6);
         getCharInfo(8);
-        favoritesSection();
+        favoritesSection();  
+        console.log(themesRadio);
     })
 }
 
-let themesRadio = Array.from(document.querySelectorAll('.radiobutton'));   
+let themesRadio = Array.from([...document.querySelectorAll('.radiobuttons')]);
 
 themesRadio.forEach(radioButton => {
-    radioButton.addEventListener('change', (event) => {
-        event.preventDefault();
+    radioButton.addEventListener('change', () => {
         console.log('changed');
         
     });
@@ -166,6 +175,7 @@ themesRadio.forEach(radioButton => {
 noFavorite.addEventListener('click', function(e){
     e.preventDefault();
     container.innerHTML = '';  
+    chooseYourFavo.remove();
     const text = document.createElement('p') as HTMLParagraphElement;
     text.innerHTML = 'Change theme:';
     body.append(text);
@@ -211,9 +221,9 @@ noFavorite.addEventListener('click', function(e){
 
 //A function to fetch the information about characters
 async function getCharInfo(x:number):Promise <void>{
+    charCard.innerHTML = '';
     const response = await fetch(charUrl)
     const data = await response.json();
-    
     const charHeader = document.createElement('h3');
     const list = document.createElement('ul');
     const viewMore = document.createElement('p');
@@ -241,9 +251,9 @@ async function getCharInfo(x:number):Promise <void>{
 
 //A function to fetch the information about spells
 async function getSpellInfo(x:number):Promise <void>{
+    spellCard.innerHTML = '';
     const response = await fetch(spellUrl)
     const data = await response.json();
-
     const spellHeader = document.createElement('h3');
     const list = document.createElement('ul');
     const viewMore = document.createElement('p');
@@ -276,7 +286,7 @@ function favoritesSection():void{
     const favoriteHeader = document.createElement('h3');
     const list = document.createElement('ul');
     const favorite = document.createElement('p');
-
+    
     container.append(favoritesCard);
     favoritesCard.append(list, favoriteHeader, favorite);
     favoritesCard.className = 'favoriteCard';
