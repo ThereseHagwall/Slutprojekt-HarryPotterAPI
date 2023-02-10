@@ -4,6 +4,7 @@
 @use 'util' as u;
 
 body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: u.$bgcolor;
 }
 
@@ -14,7 +15,7 @@ body{
 }
 
 button{
-    font-family: u.$font;
+    font-family: u.$fontHeaders;
     background-color: #F6DC4F;
     border-radius: 20px;
     width: 15rem;;
@@ -45,6 +46,16 @@ button{
     font-size: 20px;
     color: #ffff;
     margin: 0 auto;
+    height: fit-content;
+
+    li{
+        font-family: u.$fontInfo;
+
+    }
+
+    p{
+        @extend li
+    }
 }
 
 .spellCard{
@@ -57,6 +68,16 @@ button{
     font-size: 20px;
     align-items: center;
     margin: 0 auto;
+    height: fit-content;
+
+    li{
+        font-family: u.$fontInfo;
+
+    }
+    
+    p{
+        @extend li
+    }
 }
 
 .favoriteCard{
@@ -66,9 +87,19 @@ button{
     padding: 0 3em 0 3em;
     background-color: u.$slytherin;
     color: #ffff;
-    font-size: 16px;
+    font-size: 20px;
     align-items: center;
     margin: 0 auto;
+    max-height: fit-content;
+
+    li{
+        font-family: u.$fontInfo;
+
+    }
+    
+    p{
+        @extend li
+    }
 }
 
 .houseCardSection{
@@ -78,24 +109,36 @@ button{
     align-items: center;
     margin: 0 auto;
     font-size: 18px;
+    height: fit-content;
     
-    & > img {
+    img {
         width: 35%;
         height: 45%;
     }
 
-    & > p{
+    p{
         word-wrap: break-word;
         display: flex;
         flex-wrap: wrap;
+        font-family: u.$fontInfo;
     }
     
 }
 
-
 .allHousesSection{
     display: flex;
+    flex-direction: column;
     color: #ffff;
-    justify-content: center;
+}
 
+.hidden{
+    display: none;
+}
+
+section{
+    ul{
+        p{
+            cursor: pointer;
+        }
+    }
 }

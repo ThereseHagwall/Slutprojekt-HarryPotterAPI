@@ -3,7 +3,7 @@
 #header{
     display: flex;
     justify-content: center;
-    font-family: u.$font;
+    font-family: u.$fontHeaders;
     font-size: 130px;
     -webkit-text-stroke: 0.01px black;
   /* Create the gradient. */
@@ -31,7 +31,7 @@
 }
 
 h2{
-    font-family: u.$font;
+    font-family: u.$fontHeaders;
     font-size: 64px;
     text-align: center;
     margin-bottom: 0 auto;
@@ -45,5 +45,7 @@ h2{
 }
 
 h3{
-  font-size: 24px;
+  font-size: 40px;
+  font-family: u.$fontUnderRubrik;
+  margin: 0 auto;
 }

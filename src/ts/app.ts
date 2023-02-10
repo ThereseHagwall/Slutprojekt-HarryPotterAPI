@@ -1,9 +1,12 @@
 // import {person} from "./interface";
 
 
+//!ATT GÖRA!!!!!
+//?Lägga in stylingen i css. I funktionerna ge korten olika klassnamn. 
+
 //Url to fetch from
 const baseUrl = 'https://legacy--api.herokuapp.com/api/v1/houses/';
-const charUrl = 'https://hp-api.onrender.com/api/characters';
+const allCharUrl = 'https://hp-api.onrender.com/api/characters';
 const spellUrl = 'https://hp-api.onrender.com/api/spells';
 
 //Get some elements from html and create som elements
@@ -16,6 +19,11 @@ const card = document.createElement('section');
 const charCard = document.createElement('section');
 const spellCard = document.createElement('section');
 const favoritesCard = document.createElement('section');
+
+const idGryffindor = 1;
+const idSlytherin = 2;
+const idHufflepuff = 3;
+const idRavenclaw = 4;
 
 // const loading = document.createElement("img");
 // loading.className = "loading";
@@ -56,13 +64,13 @@ async function getHouseInfo(x:number):Promise <void>{
 }
 
 function getColorTheme(x:number):void{
-    if(x === 1){
+    if(x === idGryffindor){
         gryffindorColorTheme();
-    }else if(x === 2){
+    }else if(x === idSlytherin){
         slytherinColorTheme();
-    }else if(x === 3){
+    }else if(x === idHufflepuff){
         hufflepuffColorTheme();
-    }else if(x === 4){
+    }else if(x === idRavenclaw){
         ravenclawColorTheme();
     }
 }
@@ -151,25 +159,70 @@ for(let i = 1; i < allImages.length; i++) {
             label.innerHTML =  (`<input class="radiobuttons" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
             body.append(label);
         }
+        let themesRadio = Array.from(document.querySelectorAll('.radiobuttons'));
+    
+        themesRadio.forEach(radioButton => {
+            radioButton.addEventListener('change', () => {
+                if(radioButton.getAttribute('value') === 'Gryffindor'){
+                    card.innerHTML = '';
+                    getHouseInfo(idGryffindor);
+                    gryffindorColorTheme();
+                }else if(radioButton.getAttribute('value') === 'Slytherin'){
+                    card.innerHTML = '';
+                    getHouseInfo(idSlytherin);
+                    slytherinColorTheme();
+                }else if(radioButton.getAttribute('value') === 'Hufflepuff'){
+                    card.innerHTML = '';
+                    getHouseInfo(idHufflepuff);
+                    hufflepuffColorTheme();
+                }else if(radioButton.getAttribute('value') === 'Ravenclaw'){
+                    card.innerHTML = '';
+                    getHouseInfo(idRavenclaw);
+                    ravenclawColorTheme();
+                }else if(radioButton.getAttribute('value') === 'Hogwarts'){
+                    card.innerHTML = '';
+                    getAllHouseInfo();
+                }
+        });
+        });
 
         container.innerHTML = '';
         chooseYourFavo.remove();  
         getHouseInfo(i);
         getSpellInfo(6);
-        getCharInfo(8);
+        getAllCharInfo(8);
         favoritesSection();  
-        console.log(themesRadio);
+
     })
 }
 
-let themesRadio = Array.from(document.querySelectorAll('.radiobuttons'));
+//A function to fetch all housenames and images 
+async function getAllHouseInfo():Promise <void>{
+    for(let i = 1; i < 5; i++){
 
-themesRadio.forEach(radioButton => {
-    radioButton.addEventListener('change', () => {
-        console.log('changed');
+        const response = await fetch(baseUrl + i);
+        const data = await response.json();
+        container.append(card);
         
-    });
-});
+        const infoSec = document.createElement('section');
+        let houseName = document.createElement('h3');
+        let founder = document.createElement('p');
+        let img = document.createElement('img');
+
+        card.append(infoSec);
+        infoSec.append(houseName, founder, img);
+        
+        houseName.textContent = `${data.name}`;
+        founder.innerHTML = `Founder: ${data.founder}`;
+        img.src = data.image_url; 
+        infoSec.className = 'houseCardSection';
+
+        card.className = 'allHousesSection';
+
+        card.style.backgroundColor = '#0e1a40';
+        card.style.border = '10px solid #946b2d';
+    }
+}
 
 //A listner to No favorite Button.
 noFavorite.addEventListener('click', function(e){
@@ -183,46 +236,38 @@ noFavorite.addEventListener('click', function(e){
     //Loop through the array to create radiobuttons and put listner to everyone.
     for(let i = 0; i < houseArr.length; i++) {
         const label = document.createElement('label');
-        label.innerHTML =  (`<input class="radiobutton" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
+        label.innerHTML =  (`<input class="radiobuttons" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
         body.append(label);
-    }       
-    //A function to fetch all housenames and images 
-    async function getAllHouseInfo():Promise <void>{
-        for(let i = 1; i < 5; i++){
-
-            const response = await fetch(baseUrl + i);
-            const data = await response.json();
-            container.append(card);
-            
-            const infoSec = document.createElement('section');
-            let houseName = document.createElement('h3');
-            let founder = document.createElement('p');
-            let img = document.createElement('img');
-
-            card.append(infoSec);
-            infoSec.append(houseName, founder, img);
-            
-            houseName.textContent = `${data.name}`;
-            founder.innerHTML = `Founder: ${data.founder}`;
-            img.src = data.image_url; 
-            infoSec.className = 'houseCardSection';
-
-            card.className = 'allHousesSection';
+    }     
+    let themesRadio = Array.from(document.querySelectorAll('.radiobuttons'));
     
-            card.style.backgroundColor = '#0e1a40';
-            card.style.border = '10px solid #946b2d';
-        }
-    }
+    themesRadio.forEach(radioButton => {
+        radioButton.addEventListener('change', () => {
+            if(radioButton.getAttribute('value') === 'Gryffindor'){
+                gryffindorColorTheme();
+            }else if(radioButton.getAttribute('value') === 'Slytherin'){
+                slytherinColorTheme();
+            }else if(radioButton.getAttribute('value') === 'Hufflepuff'){
+                hufflepuffColorTheme();
+            }else if(radioButton.getAttribute('value') === 'Ravenclaw'){
+                ravenclawColorTheme();
+            }else if(radioButton.getAttribute('value') === 'Hogwarts'){
+                getAllHouseInfo();
+            }
+        });
+    });
+    
     favoritesSection();
     getAllHouseInfo();
     getSpellInfo(6);
-    getCharInfo(8);
+    getAllCharInfo(8);
 })
 
+
 //A function to fetch the information about characters
-async function getCharInfo(x:number):Promise <void>{
+async function getAllCharInfo(x:number):Promise <void>{
     charCard.innerHTML = '';
-    const response = await fetch(charUrl)
+    const response = await fetch(allCharUrl)
     const data = await response.json();
     const charHeader = document.createElement('h3');
     const list = document.createElement('ul');
@@ -232,7 +277,7 @@ async function getCharInfo(x:number):Promise <void>{
     viewMore.addEventListener('click', (e) =>{
         e.preventDefault();
         container.innerHTML = '';
-        getCharInfo(data.length);
+        getAllCharInfo(data.length);
     }) 
     
     charCard.className = 'charCard';
@@ -245,6 +290,36 @@ async function getCharInfo(x:number):Promise <void>{
         list.append(charName);
         container.append(charCard);
         charCard.append(charHeader, list);
+        
+        
+        charName.addEventListener('click', () =>{
+            async function getCharInfo(x:string):Promise <void>{
+                const response = await fetch(allCharUrl);
+                const data = await response.json();
+                const info = document.createElement('section');
+                info.className = 'Info hidden';
+                const img = document.createElement('img');
+                img.className = 'Info hidden';
+                const favButton = document.createElement('button');
+                favButton.className = 'Info hidden';
+                favButton.innerHTML = 'Favorite';
+                for(let i = 0; i < data.length; i++){
+                    if(x === data[i].name){
+                        if(info.className === "Info"){
+                            info.className = "Info hidden";
+                            img.className = "Info hidden";
+                        }else{
+                            info.className = "Info";
+                            img.className = "Info";
+                        }
+                        charName.append(info, img, favButton);
+                        info.innerHTML = `Actor: ${data[i].actor}<br>Gender: ${data[i].gender}<br>House: ${data[i].house}<br>Acestry: ${data[i].ancestry}<br>Species: ${data[i].species}<br>Patronus: ${data[i].patronus}`;
+                        img.src = data[i].image;
+                    }
+                }
+            }
+            getCharInfo(charName.innerText);
+        })
     }
     charCard.append(viewMore);
 }
@@ -258,7 +333,6 @@ async function getSpellInfo(x:number):Promise <void>{
     const list = document.createElement('ul');
     const viewMore = document.createElement('p');
     viewMore.innerHTML = 'View All';
-
     
     spellCard.className ='spellCard';
     spellHeader.innerHTML = 'Spells';
@@ -285,13 +359,12 @@ async function getSpellInfo(x:number):Promise <void>{
 function favoritesSection():void{
     const favoriteHeader = document.createElement('h3');
     const list = document.createElement('ul');
-    const favorite = document.createElement('p');
     
     container.append(favoritesCard);
-    favoritesCard.append(list, favoriteHeader, favorite);
+    favoritesCard.append(favoriteHeader, list);
     favoritesCard.className = 'favoriteCard';
     favoriteHeader.innerHTML = 'Favorites';
-    favorite.innerHTML = `Your favorites stores here`;
+    list.innerHTML = `<li>Your favorites stores here`;
     
 }
 
