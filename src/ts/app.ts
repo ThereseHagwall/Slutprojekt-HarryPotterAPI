@@ -2,7 +2,10 @@
 
 
 //!ATT GÖRA!!!!!
-//?Lägga in stylingen i css. I funktionerna ge korten olika klassnamn. 
+//? Lägga till sökfunktion där användaren kan hitta en specifik karaktär eller en specifik trollformel. 
+//? Favorit knapp för att lägga till sina favoriter i. 
+//? Fixa radioknapparna så dem syns bättre, ligger över korten och ligger på rad inte i column.
+//? Fixa så att när du klickar på ett namn får du upp info om karaktären. Klickar man igen så försvinner infon.
 
 //Url to fetch from
 const baseUrl = 'https://legacy--api.herokuapp.com/api/v1/houses/';
@@ -24,6 +27,7 @@ const idGryffindor = 1;
 const idSlytherin = 2;
 const idHufflepuff = 3;
 const idRavenclaw = 4;
+const idHogwarts = 5;
 
 // const loading = document.createElement("img");
 // loading.className = "loading";
@@ -47,7 +51,6 @@ async function getHouseInfo(x:number):Promise <void>{
     let img = document.createElement('img');
     
     container.append(card);
-    card.className = 'houseCardSection';
     card.append(houseName, founder, animal, traits, element, colors, ghost, commonRoom, img);
     
     houseName.innerHTML = `${data.name}`;
@@ -72,70 +75,39 @@ function getColorTheme(x:number):void{
         hufflepuffColorTheme();
     }else if(x === idRavenclaw){
         ravenclawColorTheme();
+    }else if(x === idHogwarts){
+        hogwartsColorTheme();
     }
 }
 
+function getClassName(x:string):void{
+    card.className = `houseCardSection ${x}`;
+    charCard.className = `charCard ${x}`;
+    spellCard.className = `spellCard ${x}`;
+    favoritesCard.className = `favoriteCard ${x}`;
+}
+
 function gryffindorColorTheme():void{
-    card.style.backgroundColor = '#740001';
-    card.style.border = '10px solid #d3a625';
-    card.style.color = '#ffff'
-    charCard.style.backgroundColor = '#740001';
-    charCard.style.border = '10px solid #d3a625';
-    charCard.style.color = '#ffff'
-    spellCard.style.backgroundColor = '#740001';
-    spellCard.style.border = '10px solid #d3a625';
-    spellCard.style.color = '#ffff';
-    favoritesCard.style.backgroundColor = '#740001';
-    favoritesCard.style.border = '10px solid #d3a625';
-    favoritesCard.style.color = '#ffff';
+    getClassName('gryffindor');
 }
 
 function slytherinColorTheme():void{
-    card.style.backgroundColor = '#1a472a';
-    card.style.border = '10px solid #aaaaaa';
-    card.style.color = '#ffff'
-    charCard.style.backgroundColor = '#1a472a';
-    charCard.style.border = '10px solid #aaaaaa';
-    charCard.style.color = '#ffff'
-    spellCard.style.backgroundColor = '#1a472a';
-    spellCard.style.border = '10px solid #aaaaaa';
-    spellCard.style.color = '#ffff';
-    favoritesCard.style.backgroundColor = '#1a472a';
-    favoritesCard.style.border = '10px solid #aaaaaa';
-    favoritesCard.style.color = '#ffff';
+    getClassName('slytherin');
+
 }
 
 function hufflepuffColorTheme():void{
-    card.style.backgroundColor = '#ecb939';
-    card.style.border = '10px solid #372e29';
-    card.style.color = '#372e29'
-    charCard.style.backgroundColor = '#ecb939';
-    charCard.style.border = '10px solid #372e29';
-    charCard.style.color = '#372e29'
-    spellCard.style.backgroundColor = '#ecb939';
-    spellCard.style.border = '10px solid #372e29';
-    spellCard.style.color = '#372e29';
-    favoritesCard.style.backgroundColor = '#ecb939';
-    favoritesCard.style.border = '10px solid #372e29';
-    favoritesCard.style.color = '#372e29';
+    getClassName('hufflepuff');
+
 }
 
 function ravenclawColorTheme():void{
-    card.style.backgroundColor = '#0e1a40';
-    card.style.border = '10px solid #946b2d';
-    card.style.color = '#ffff'
-    charCard.style.backgroundColor = '#0e1a40';
-    charCard.style.border = '10px solid #946b2d';
-    charCard.style.color = '#ffff'
-    spellCard.style.backgroundColor = '#0e1a40';
-    spellCard.style.border = '10px solid #946b2d';
-    spellCard.style.color = '#ffff';
-    favoritesCard.style.backgroundColor = '#0e1a40';
-    favoritesCard.style.border = '10px solid #946b2d';
-    favoritesCard.style.color = '#ffff';
-    
+    getClassName('ravenclaw');
 }
 
+function hogwartsColorTheme():void{
+    getClassName('hogwarts');
+}
 //Array to store all housenames and Nohouse = hogwarts
 const houseArr: string[] = [
     'Gryffindor',
@@ -152,6 +124,8 @@ for(let i = 1; i < allImages.length; i++) {
         const text = document.createElement('p') as HTMLParagraphElement;
         text.innerHTML = 'Change theme:';
         body.append(text);
+        container.style.padding = '0';
+        noFavorite.remove();
 
         //Loop through the array to create radiobuttons and put listner to everyone.
         for(let i = 0; i < houseArr.length; i++) {
@@ -229,9 +203,11 @@ noFavorite.addEventListener('click', function(e){
     e.preventDefault();
     container.innerHTML = '';  
     chooseYourFavo.remove();
+    noFavorite.remove();
     const text = document.createElement('p') as HTMLParagraphElement;
     text.innerHTML = 'Change theme:';
     body.append(text);
+    getColorTheme(idHogwarts);
     
     //Loop through the array to create radiobuttons and put listner to everyone.
     for(let i = 0; i < houseArr.length; i++) {
@@ -244,14 +220,23 @@ noFavorite.addEventListener('click', function(e){
     themesRadio.forEach(radioButton => {
         radioButton.addEventListener('change', () => {
             if(radioButton.getAttribute('value') === 'Gryffindor'){
+                card.innerHTML = '';
+                getHouseInfo(idGryffindor);
                 gryffindorColorTheme();
             }else if(radioButton.getAttribute('value') === 'Slytherin'){
+                card.innerHTML = '';
+                getHouseInfo(idSlytherin);
                 slytherinColorTheme();
             }else if(radioButton.getAttribute('value') === 'Hufflepuff'){
+                card.innerHTML = '';
+                getHouseInfo(idHufflepuff);
                 hufflepuffColorTheme();
             }else if(radioButton.getAttribute('value') === 'Ravenclaw'){
+                card.innerHTML = '';
+                getHouseInfo(idRavenclaw);
                 ravenclawColorTheme();
             }else if(radioButton.getAttribute('value') === 'Hogwarts'){
+                card.innerHTML = '';
                 getAllHouseInfo();
             }
         });
@@ -279,8 +264,7 @@ async function getAllCharInfo(x:number):Promise <void>{
         container.innerHTML = '';
         getAllCharInfo(data.length);
     }) 
-    
-    charCard.className = 'charCard';
+
     charHeader.innerHTML = 'Characters';
     
     //Loop through 5 characters to write on the card
@@ -334,7 +318,6 @@ async function getSpellInfo(x:number):Promise <void>{
     const viewMore = document.createElement('p');
     viewMore.innerHTML = 'View All';
     
-    spellCard.className ='spellCard';
     spellHeader.innerHTML = 'Spells';
     
     //Loop through 5 spells to write on the card
@@ -362,7 +345,6 @@ function favoritesSection():void{
     
     container.append(favoritesCard);
     favoritesCard.append(favoriteHeader, list);
-    favoritesCard.className = 'favoriteCard';
     favoriteHeader.innerHTML = 'Favorites';
     list.innerHTML = `<li>Your favorites stores here`;
     
