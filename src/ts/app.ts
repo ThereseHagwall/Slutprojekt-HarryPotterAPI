@@ -17,9 +17,9 @@ const charCard = document.createElement('section');
 const spellCard = document.createElement('section');
 const favoritesCard = document.createElement('section');
 
-const loading = document.createElement("img");
-loading.className = "loading";
-loading.src = "loading.gif";
+// const loading = document.createElement("img");
+// loading.className = "loading";
+// loading.src = "loading.gif";
 
 
 //A function to fetch the information about the house the user choose.
@@ -52,22 +52,22 @@ async function getHouseInfo(x:number):Promise <void>{
     commonRoom.innerHTML = `Common Room: ${data.common_room}`;
     img.src = data.image_url;   
     
-    getColor(x);
+    getColorTheme(x);
 }
 
-function getColor(x:number):void{
+function getColorTheme(x:number):void{
     if(x === 1){
-        gryffindorColor();
+        gryffindorColorTheme();
     }else if(x === 2){
-        slytherinColor();
+        slytherinColorTheme();
     }else if(x === 3){
-        hufflepuffColor();
+        hufflepuffColorTheme();
     }else if(x === 4){
-        ravenclawColor();
+        ravenclawColorTheme();
     }
 }
 
-function gryffindorColor():void{
+function gryffindorColorTheme():void{
     card.style.backgroundColor = '#740001';
     card.style.border = '10px solid #d3a625';
     card.style.color = '#ffff'
@@ -82,7 +82,7 @@ function gryffindorColor():void{
     favoritesCard.style.color = '#ffff';
 }
 
-function slytherinColor():void{
+function slytherinColorTheme():void{
     card.style.backgroundColor = '#1a472a';
     card.style.border = '10px solid #aaaaaa';
     card.style.color = '#ffff'
@@ -97,7 +97,7 @@ function slytherinColor():void{
     favoritesCard.style.color = '#ffff';
 }
 
-function hufflepuffColor():void{
+function hufflepuffColorTheme():void{
     card.style.backgroundColor = '#ecb939';
     card.style.border = '10px solid #372e29';
     card.style.color = '#372e29'
@@ -112,7 +112,7 @@ function hufflepuffColor():void{
     favoritesCard.style.color = '#372e29';
 }
 
-function ravenclawColor():void{
+function ravenclawColorTheme():void{
     card.style.backgroundColor = '#0e1a40';
     card.style.border = '10px solid #946b2d';
     card.style.color = '#ffff'
@@ -162,7 +162,7 @@ for(let i = 1; i < allImages.length; i++) {
     })
 }
 
-let themesRadio = Array.from([...document.querySelectorAll('.radiobuttons')]);
+let themesRadio = Array.from(document.querySelectorAll('.radiobuttons'));
 
 themesRadio.forEach(radioButton => {
     radioButton.addEventListener('change', () => {
