@@ -4,6 +4,8 @@
 @use 'util' as u;
 
 body{
+    display: flex;
+    flex-direction: column;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: u.$bgcolor;
 }
@@ -11,16 +13,18 @@ body{
 .container{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     flex-wrap: wrap;
+    padding: 8em 0 8em 0;
 }
 
 button{
     font-family: u.$fontHeaders;
     background-color: #F6DC4F;
     border-radius: 20px;
-    width: 15rem;;
-    height: 3rem;
-    font-size: 30px;
+    width: 20rem;;
+    height: 5rem;
+    font-size: 36px;
     border: 3px outset grey;
     align-self: center;
 
@@ -43,7 +47,7 @@ button{
     padding: 0 3em 0 3em;
     background-color: u.$gryffindor;
     align-items: center;
-    font-size: 20px;
+    font-size: 24px;
     color: #ffff;
     margin: 0 auto;
     height: fit-content;
@@ -65,7 +69,7 @@ button{
     padding: 0 2em 0 2em;
     background-color: u.$hufflepuff;
     color: #ffff;
-    font-size: 20px;
+    font-size: 24px;
     align-items: center;
     margin: 0 auto;
     height: fit-content;
@@ -87,7 +91,7 @@ button{
     padding: 0 3em 0 3em;
     background-color: u.$slytherin;
     color: #ffff;
-    font-size: 20px;
+    font-size: 24px;
     align-items: center;
     margin: 0 auto;
     max-height: fit-content;
@@ -108,8 +112,9 @@ button{
     padding: 0 1em 0 1em;
     align-items: center;
     margin: 0 auto;
-    font-size: 18px;
+    font-size: 24px;
     height: fit-content;
+    max-width: 30em;
     
     img {
         width: 35%;
@@ -140,5 +145,60 @@ section{
         p{
             cursor: pointer;
         }
+    }
+}
+
+.imagesSection{
+    
+    display: flex;
+    flex-direction: row;
+    
+    gap: 10em;
+    
+    flex-wrap: wrap;
+    // margin-bottom: 30px;
+}
+
+.gryffindor{
+    background-color: u.$gryffindor;
+    border: 10px solid u.$gryffindorborder;
+    color: #ffff;
+
+}
+
+.slytherin{
+    background-color: u.$slytherin;
+    border: 10px solid u.$slytherinborder;
+    color: #ffff;
+    
+}
+
+.ravenclaw{
+    background-color: u.$ravenclaw;
+    border: 10px solid u.$ravenclawborder;
+    color: #ffff;
+}
+
+.hufflepuff{
+    background-color: u.$hufflepuff;
+    border: 10px solid u.$hufflepuffborder;
+    color: u.$hufflepufftext;
+} 
+
+.hogwarts{
+    &.charCard{
+        background-color: u.$gryffindor;
+        border:10px solid u.$gryffindorborder;
+    }
+
+    &.spellCard{
+        background-color: u.$slytherin;
+        border:10px solid u.$slytherinborder;
+    }
+
+    &.favoriteCard{
+        background-color: u.$hufflepuff;
+        border:10px solid u.$hufflepuffborder;
+        color: u.$hufflepuffborder;
     }
 }
