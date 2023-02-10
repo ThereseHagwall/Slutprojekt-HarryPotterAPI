@@ -20,6 +20,9 @@ const card = document.createElement('section');
 const charCard = document.createElement('section');
 const spellCard = document.createElement('section');
 const favoritesCard = document.createElement('section');
+const loading = document.createElement("img");
+loading.className = "loading";
+loading.src = "loading.gif";
 function getHouseInfo(x) {
     return __awaiter(this, void 0, void 0, function* () {
         const response = yield fetch(baseUrl + x);

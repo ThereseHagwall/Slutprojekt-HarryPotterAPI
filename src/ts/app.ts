@@ -17,9 +17,9 @@ const charCard = document.createElement('section');
 const spellCard = document.createElement('section');
 const favoritesCard = document.createElement('section');
 
-// const loading = document.createElement("img");
-// loading.className = "loading";
-// loading.src = "loading.gif";
+const loading = document.createElement("img");
+loading.className = "loading";
+loading.src = "loading.gif";
 
 
 //A function to fetch the information about the house the user choose.
