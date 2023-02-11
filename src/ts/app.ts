@@ -4,7 +4,7 @@
 //!ATT GÖRA!!!!!
 //? Lägga till sökfunktion där användaren kan hitta en specifik karaktär eller en specifik trollformel. 
 //? Favorit knapp för att lägga till sina favoriter i. 
-//? Fixa radioknapparna så dem syns bättre, ligger över korten och ligger på rad inte i column.
+//* Fixa radioknapparna så dem syns bättre, ligger över korten och ligger på rad inte i column.
 //? Fixa så att när du klickar på ett namn får du upp info om karaktären. Klickar man igen så försvinner infon.
 
 //Url to fetch from
@@ -108,6 +108,37 @@ function ravenclawColorTheme():void{
 function hogwartsColorTheme():void{
     getClassName('hogwarts');
 }
+
+function getRadioButton():void{
+    let themesRadio = Array.from(document.querySelectorAll('.radiobuttons'));
+    
+    themesRadio.forEach(radioButton => {
+        radioButton.addEventListener('change', () => {
+            if(radioButton.getAttribute('value') === 'Gryffindor'){
+                card.innerHTML = '';
+                getHouseInfo(idGryffindor);
+                gryffindorColorTheme();
+            }else if(radioButton.getAttribute('value') === 'Slytherin'){
+                card.innerHTML = '';
+                getHouseInfo(idSlytherin);
+                slytherinColorTheme();
+            }else if(radioButton.getAttribute('value') === 'Hufflepuff'){
+                card.innerHTML = '';
+                getHouseInfo(idHufflepuff);
+                hufflepuffColorTheme();
+            }else if(radioButton.getAttribute('value') === 'Ravenclaw'){
+                card.innerHTML = '';
+                getHouseInfo(idRavenclaw);
+                ravenclawColorTheme();
+            }else if(radioButton.getAttribute('value') === 'Hogwarts'){
+                card.innerHTML = '';
+                hogwartsColorTheme()
+                getAllHouseInfo();
+            }
+    });
+    });
+}
+
 //Array to store all housenames and Nohouse = hogwarts
 const houseArr: string[] = [
     'Gryffindor',
@@ -116,7 +147,6 @@ const houseArr: string[] = [
     'Ravenclaw',
     'Hogwarts',
 ]
-
 
 //Loop through all images to set a listner on everyone
 for(let i = 1; i < allImages.length; i++) {
@@ -139,35 +169,9 @@ for(let i = 1; i < allImages.length; i++) {
             label.innerHTML =  (`<input class="radiobuttons" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
             radioSection.append(label);
         }
-        let themesRadio = Array.from(document.querySelectorAll('.radiobuttons'));
-    
-        themesRadio.forEach(radioButton => {
-            radioButton.addEventListener('change', () => {
-                if(radioButton.getAttribute('value') === 'Gryffindor'){
-                    card.innerHTML = '';
-                    getHouseInfo(idGryffindor);
-                    gryffindorColorTheme();
-                }else if(radioButton.getAttribute('value') === 'Slytherin'){
-                    card.innerHTML = '';
-                    getHouseInfo(idSlytherin);
-                    slytherinColorTheme();
-                }else if(radioButton.getAttribute('value') === 'Hufflepuff'){
-                    card.innerHTML = '';
-                    getHouseInfo(idHufflepuff);
-                    hufflepuffColorTheme();
-                }else if(radioButton.getAttribute('value') === 'Ravenclaw'){
-                    card.innerHTML = '';
-                    getHouseInfo(idRavenclaw);
-                    ravenclawColorTheme();
-                }else if(radioButton.getAttribute('value') === 'Hogwarts'){
-                    card.innerHTML = '';
-                    hogwartsColorTheme()
-                    getAllHouseInfo();
-                }
-        });
-        });
-
+        
         chooseYourFavo.remove();  
+        getRadioButton();
         getHouseInfo(i);
         getSpellInfo(6);
         getAllCharInfo(8);
@@ -227,34 +231,8 @@ noFavorite.addEventListener('click', function(e){
         label.innerHTML =  (`<input class="radiobuttons" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
         radioSection.append(label);
     }     
-    let themesRadio = Array.from(document.querySelectorAll('.radiobuttons'));
     
-    themesRadio.forEach(radioButton => {
-        radioButton.addEventListener('change', () => {
-            if(radioButton.getAttribute('value') === 'Gryffindor'){
-                card.innerHTML = '';
-                getHouseInfo(idGryffindor);
-                gryffindorColorTheme();
-            }else if(radioButton.getAttribute('value') === 'Slytherin'){
-                card.innerHTML = '';
-                getHouseInfo(idSlytherin);
-                slytherinColorTheme();
-            }else if(radioButton.getAttribute('value') === 'Hufflepuff'){
-                card.innerHTML = '';
-                getHouseInfo(idHufflepuff);
-                hufflepuffColorTheme();
-            }else if(radioButton.getAttribute('value') === 'Ravenclaw'){
-                card.innerHTML = '';
-                getHouseInfo(idRavenclaw);
-                ravenclawColorTheme();
-            }else if(radioButton.getAttribute('value') === 'Hogwarts'){
-                card.innerHTML = '';
-                hogwartsColorTheme();
-                getAllHouseInfo();
-            }
-        });
-    });
-    
+    getRadioButton()
     favoritesSection();
     getAllHouseInfo();
     getSpellInfo(6);
