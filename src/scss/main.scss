@@ -114,6 +114,12 @@ button{
     p{
         @extend li
     }
+
+    .deleteButton{
+        font-size: 20px;
+        height: fit-content;
+        width: fit-content;
+    }
 }
 
 .houseCardSection{
