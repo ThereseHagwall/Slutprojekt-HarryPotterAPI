@@ -16,6 +16,10 @@ body{
     justify-content: center;
     flex-wrap: wrap;
     padding: 8em 0 8em 0;
+
+    @include u.breakpoint(medium){
+        padding: 3em 0 3em 0;
+    }
 }
 
 button{
@@ -60,6 +64,7 @@ button{
     p{
         @extend li
     }
+
 }
 
 .spellCard{
@@ -156,7 +161,10 @@ section{
     gap: 10em;
     
     flex-wrap: wrap;
-    // margin-bottom: 30px;
+
+    @include u.breakpoint(medium){
+        gap: 4em;
+    }
 }
 
 .gryffindor{
@@ -200,5 +208,17 @@ section{
         background-color: u.$hufflepuff;
         border:10px solid u.$hufflepuffborder;
         color: u.$hufflepuffborder;
+    }
+}
+
+.radioSection{
+    display: flex;
+    font-size: 20px;
+    margin-left: 30%;
+    margin-right: 30%;
+    align-items: center;
+
+    @include u.breakpoint(medium){
+        flex-direction: column;
     }
 }
