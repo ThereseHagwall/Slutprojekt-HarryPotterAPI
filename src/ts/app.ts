@@ -121,17 +121,23 @@ const houseArr: string[] = [
 //Loop through all images to set a listner on everyone
 for(let i = 1; i < allImages.length; i++) {
     allImages[i].addEventListener('click', () => {
+        container.innerHTML = '';
         const text = document.createElement('p') as HTMLParagraphElement;
+        const radioSection = document.createElement('section');
         text.innerHTML = 'Change theme:';
-        body.append(text);
+        container.append(radioSection);
+        radioSection.append(text);
+        radioSection.className = 'radioSection';
+        
         container.style.padding = '0';
+        container.style.gap = '10px'
         noFavorite.remove();
 
         //Loop through the array to create radiobuttons and put listner to everyone.
         for(let i = 0; i < houseArr.length; i++) {
             const label = document.createElement('label');
             label.innerHTML =  (`<input class="radiobuttons" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
-            body.append(label);
+            radioSection.append(label);
         }
         let themesRadio = Array.from(document.querySelectorAll('.radiobuttons'));
     
@@ -155,12 +161,12 @@ for(let i = 1; i < allImages.length; i++) {
                     ravenclawColorTheme();
                 }else if(radioButton.getAttribute('value') === 'Hogwarts'){
                     card.innerHTML = '';
+                    hogwartsColorTheme()
                     getAllHouseInfo();
                 }
         });
         });
 
-        container.innerHTML = '';
         chooseYourFavo.remove();  
         getHouseInfo(i);
         getSpellInfo(6);
@@ -205,15 +211,21 @@ noFavorite.addEventListener('click', function(e){
     chooseYourFavo.remove();
     noFavorite.remove();
     const text = document.createElement('p') as HTMLParagraphElement;
+    const radioSection = document.createElement('section');
     text.innerHTML = 'Change theme:';
-    body.append(text);
+    container.append(radioSection);
+    radioSection.append(text);
+    radioSection.className = 'radioSection';
+    
+    container.style.padding = '0';
+    container.style.gap = '10px'
     getColorTheme(idHogwarts);
     
     //Loop through the array to create radiobuttons and put listner to everyone.
     for(let i = 0; i < houseArr.length; i++) {
         const label = document.createElement('label');
         label.innerHTML =  (`<input class="radiobuttons" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
-        body.append(label);
+        radioSection.append(label);
     }     
     let themesRadio = Array.from(document.querySelectorAll('.radiobuttons'));
     
@@ -237,6 +249,7 @@ noFavorite.addEventListener('click', function(e){
                 ravenclawColorTheme();
             }else if(radioButton.getAttribute('value') === 'Hogwarts'){
                 card.innerHTML = '';
+                hogwartsColorTheme();
                 getAllHouseInfo();
             }
         });
