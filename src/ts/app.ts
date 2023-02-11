@@ -239,6 +239,7 @@ noFavorite.addEventListener('click', function(e){
     getAllCharInfo(8);
 })
 
+let favArr: string[] = [];
 
 //A function to fetch the information about characters
 async function getAllCharInfo(x:number):Promise <void>{
@@ -272,24 +273,22 @@ async function getAllCharInfo(x:number):Promise <void>{
                 const response = await fetch(allCharUrl);
                 const data = await response.json();
                 const info = document.createElement('section');
-                info.className = 'Info hidden';
+                info.className = 'Info';
                 const img = document.createElement('img');
-                img.className = 'Info hidden';
+                img.className = 'Info';
                 const favButton = document.createElement('button');
-                favButton.className = 'Info hidden';
-                favButton.innerHTML = 'Favorite';
+                favButton.innerHTML = 'Add to favorites';
+                favButton.className = 'Info';
                 for(let i = 0; i < data.length; i++){
                     if(x === data[i].name){
-                        if(info.className === "Info"){
-                            info.className = "Info hidden";
-                            img.className = "Info hidden";
-                        }else{
-                            info.className = "Info";
-                            img.className = "Info";
-                        }
                         charName.append(info, img, favButton);
                         info.innerHTML = `Actor: ${data[i].actor}<br>Gender: ${data[i].gender}<br>House: ${data[i].house}<br>Acestry: ${data[i].ancestry}<br>Species: ${data[i].species}<br>Patronus: ${data[i].patronus}`;
                         img.src = data[i].image;
+                        favButton.addEventListener('click', () =>{
+                            favArr = [];
+                            favArr.push(data[i].name);
+                            printFavorites();
+                        })
                     }
                 }
             }
@@ -332,12 +331,16 @@ async function getSpellInfo(x:number):Promise <void>{
 
 function favoritesSection():void{
     const favoriteHeader = document.createElement('h3');
-    const list = document.createElement('ul');
-    
     container.append(favoritesCard);
-    favoritesCard.append(favoriteHeader, list);
+    favoritesCard.append(favoriteHeader);
     favoriteHeader.innerHTML = 'Favorites';
-    list.innerHTML = `<li>Your favorites stores here`;
-    
 }
 
+function printFavorites():void{
+    const list = document.createElement('ul');
+    favoritesCard.append(list);
+
+    favArr.forEach(element =>{
+        list.innerHTML += `<li>${element}`;
+    })
+}
