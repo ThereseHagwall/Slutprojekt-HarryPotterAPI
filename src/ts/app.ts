@@ -252,8 +252,7 @@ async function getAllCharInfo(x:number):Promise <void>{
     const viewMore = document.createElement('p');
     viewMore.innerHTML = 'View All';
     
-    viewMore.addEventListener('click', (e) =>{
-        e.preventDefault();
+    viewMore.addEventListener('click', () =>{
         container.innerHTML = '';
         getAllCharInfo(data.length);
     }) 
