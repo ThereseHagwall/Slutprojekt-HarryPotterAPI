@@ -3,8 +3,9 @@
 
 //!ATT GÖRA!!!!!
 //? Lägga till sökfunktion där användaren kan hitta en specifik karaktär eller en specifik trollformel. 
-//? Favorit knapp för att lägga till sina favoriter i. 
+//* Favorit knapp för att lägga till sina favoriter i. 
 //* Fixa radioknapparna så dem syns bättre, ligger över korten och ligger på rad inte i column.
+//? Skapa en delete knapp i favoriteSectionen.
 //? Fixa så att när du klickar på ett namn får du upp info om karaktären. Klickar man igen så försvinner infon.
 
 //Url to fetch from
@@ -267,7 +268,6 @@ async function getAllCharInfo(x:number):Promise <void>{
         container.append(charCard);
         charCard.append(charHeader, list);
         
-        
         charName.addEventListener('click', () =>{
             async function getCharInfo(x:string):Promise <void>{
                 const response = await fetch(allCharUrl);
@@ -284,11 +284,20 @@ async function getAllCharInfo(x:number):Promise <void>{
                         charName.append(info, img, favButton);
                         info.innerHTML = `Actor: ${data[i].actor}<br>Gender: ${data[i].gender}<br>House: ${data[i].house}<br>Acestry: ${data[i].ancestry}<br>Species: ${data[i].species}<br>Patronus: ${data[i].patronus}`;
                         img.src = data[i].image;
+                        if(data[i].image === ""){
+                            charName.removeChild(img);
+                        }
                         favButton.addEventListener('click', () =>{
-                            favArr = [];
-                            favArr.push(data[i].name);
-                            printFavorites();
+                            let find = favArr.indexOf(data[i].name);
+                            if(find !== -1){
+                                alert('This Carachter are allredy in your favorites.')
+                            }else{
+                                
+                                favArr.push(data[i].name);
+                                printFavorites();
+                            }
                         })
+                        favArr = [];
                     }
                 }
             }
@@ -341,6 +350,10 @@ function printFavorites():void{
     favoritesCard.append(list);
 
     favArr.forEach(element =>{
-        list.innerHTML += `<li>${element}`;
+        list.innerHTML += `<li>${element} <button class="deleteButton">Delete</button)`;
     })
+    const deleteButton = document.querySelector('.deleteButton') as HTMLButtonElement;
+    deleteButton.addEventListener('click', () =>{
+        console.log('deleted');
+    })    
 }
