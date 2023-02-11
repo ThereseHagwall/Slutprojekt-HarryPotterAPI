@@ -5,7 +5,7 @@
 //? Lägga till sökfunktion där användaren kan hitta en specifik karaktär eller en specifik trollformel. 
 //* Favorit knapp för att lägga till sina favoriter i. 
 //* Fixa radioknapparna så dem syns bättre, ligger över korten och ligger på rad inte i column.
-//? Skapa en delete knapp i favoriteSectionen.
+//? Skapa en delete knapp i favoriteSectionen. Och koppla den till att ta bort ett element från arrayen.
 //? Fixa så att när du klickar på ett namn får du upp info om karaktären. Klickar man igen så försvinner infon.
 
 //Url to fetch from
