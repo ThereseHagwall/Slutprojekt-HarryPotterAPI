@@ -253,7 +253,8 @@ async function getAllCharInfo(x:number):Promise <void>{
     viewMore.innerHTML = 'View All';
     
     viewMore.addEventListener('click', () =>{
-        container.innerHTML = '';
+        // container.innerHTML = '';
+        charCard.innerHTML = "";
         getAllCharInfo(data.length);
     }) 
 
@@ -295,7 +296,6 @@ async function getAllCharInfo(x:number):Promise <void>{
                                 printFavorites();
                             }
                         })
-                        favArr = [];
                     }
                 }
             }
@@ -348,10 +348,11 @@ function printFavorites():void{
     favoritesCard.append(list);
 
     favArr.forEach(element =>{
-        list.innerHTML += `<li>${element} <button class="deleteButton">Delete</button)`;
+        list.innerHTML = `<li>${element} <button class="deleteButton">Delete</button)`;
     })
     const deleteButton = document.querySelector('.deleteButton') as HTMLButtonElement;
     deleteButton.addEventListener('click', () =>{
         console.log('deleted');
+        console.log('hit')
     })    
 }
