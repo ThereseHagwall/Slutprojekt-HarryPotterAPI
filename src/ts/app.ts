@@ -289,9 +289,8 @@ async function getAllCharInfo(x:number):Promise <void>{
                         favButton.addEventListener('click', () =>{
                             let find = favArr.indexOf(data[i].name);
                             if(find !== -1){
-                                alert('This Carachter are allredy in your favorites.')
+                                alert('This Carachter are allready in your favorites.')
                             }else{
-                                
                                 favArr.push(data[i].name);
                                 printFavorites();
                             }
