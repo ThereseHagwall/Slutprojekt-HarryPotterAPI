@@ -107,7 +107,6 @@ button{
     align-items: center;
     margin: 0 auto;
     contain: content;
-    // max-height:400px;
 
     img{
         width: 30%;
@@ -165,6 +164,10 @@ button{
     img {
         height: 45%;
         width: 45%;
+    }
+
+    @include u.breakpoint(medium){
+        flex-direction: column;;
     }
 }
 
@@ -260,4 +263,10 @@ p{
         height: fit-content;
         width: fit-content;
     }
+}
+
+#searchButton{
+    width: fit-content;
+    height: fit-content;
+    font-size: 20px;
 }
