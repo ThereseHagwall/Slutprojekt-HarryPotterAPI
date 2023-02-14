@@ -22,6 +22,7 @@ const charCard = document.createElement('section');
 const spellCard = document.createElement('section');
 const favoritesCard = document.createElement('section');
 const hogwartsExpressImg = document.createElement('img');
+const ul = document.createElement('ul');
 
 const idGryffindor = 1;
 const idSlytherin = 2;
@@ -35,7 +36,7 @@ const idHogwarts = 5;
 
 //A function to fetch the information about the house the user choose.
 async function getHouseInfo(x:number):Promise <void>{
-
+    
     const response = await fetch(baseUrl+x);
     const data = await response.json();
     
@@ -92,12 +93,12 @@ function gryffindorColorTheme():void{
 
 function slytherinColorTheme():void{
     getClassName('slytherin');
-
+    
 }
 
 function hufflepuffColorTheme():void{
     getClassName('hufflepuff');
-
+    
 }
 
 function ravenclawColorTheme():void{
@@ -161,7 +162,7 @@ for(let i = 1; i < allImages.length; i++) {
         container.style.padding = '0';
         container.style.gap = '10px'
         noFavorite.remove();
-
+        
         //Loop through the array to create radiobuttons and put listner to everyone.
         for(let i = 0; i < houseArr.length; i++) {
             const label = document.createElement('label');
@@ -174,14 +175,14 @@ for(let i = 1; i < allImages.length; i++) {
         getSpellInfo(6);
         getAllCharInfo(8);
         favoritesSection();  
-
+        
     })
 }
 
 //A function to fetch all housenames and images 
 async function getAllHouseInfo():Promise <void>{
     for(let i = 1; i < 5; i++){
-
+        
         const response = await fetch(baseUrl + i);
         const data = await response.json();
         container.append(card);
@@ -190,7 +191,7 @@ async function getAllHouseInfo():Promise <void>{
         let houseName = document.createElement('h3');
         let founder = document.createElement('p');
         let img = document.createElement('img');
-
+        
         card.append(infoSec);
         infoSec.append(houseName, founder, img);
         
@@ -198,9 +199,9 @@ async function getAllHouseInfo():Promise <void>{
         founder.innerHTML = `Founder: ${data.founder}`;
         img.src = data.image_url; 
         infoSec.className = 'houseCardSection';
-
+        
         card.className = 'allHousesSection';
-
+        
         card.style.backgroundColor = '#0e1a40';
         card.style.border = '10px solid #946b2d';
     }
@@ -252,8 +253,31 @@ async function getAllCharInfo(x:number):Promise <void>{
     viewMore.addEventListener('click', () =>{
         charCard.innerHTML = "";
         getAllCharInfo(data.length);
-    }) 
+        const label = document.createElement('label');
+        const search = document.createElement('input');
+        const searchButton = document.createElement('button');
+        searchButton.id = 'searchButton';
+        
+        charCard.append(label, search, searchButton);
+        label.innerHTML = 'Search';
+        search.placeholder = "Ex. Harry Potter";
+        searchButton.innerHTML = "Search";
 
+        searchButton.addEventListener('click', () =>{
+            console.log(search.value);
+            for(let i = 0; i < data.length; i++){
+                if(data[i].name === search.value){
+                    // list.innerHTML = "";
+                    console.log(data[i].name, data[i].house, data[i].gender, data[i].patronus);
+                }
+
+            }
+            search.value = "";
+        })
+
+
+    }) 
+    
     charHeader.innerHTML = 'Characters';
     
     //Loop through 5 characters to write on the card
@@ -338,7 +362,7 @@ async function getSpellInfo(x:number):Promise <void>{
         getSpellInfo(data.length);
     })
     spellCard.append(viewMore);
-
+    
 }
 
 function favoritesSection():void{
@@ -349,24 +373,27 @@ function favoritesSection():void{
 }
 
 function printFavorites():void{
-    const list = document.createElement('ul');
-    favoritesCard.append(list);
-
+    
+    const list = document.createElement('li');
+    ul.append(list);
+    favoritesCard.append(ul);
+    
     favArr.forEach(element =>{
-        list.innerHTML = `<li>${element} <button class="deleteButtons">Delete</button)`;
-        const deleteButton = [...document.querySelectorAll('.deleteButtons')];
-        for(let i = 0; i < deleteButton.length; i++){
-            deleteButton[i].addEventListener('click', () =>{
-                console.log('deleted');
-                list.innerHTML = "";
-                deleteFavorites(i);
-                console.log(favArr);
-            })    
-        }
+        list.innerHTML = `${element} <button class="deleteButtons">Delete</button)`;
     })
+    for(let i = 0; i <favArr.length; i++){
+
+        const currentChar = favArr[i];
+        const deleteButton = [...document.querySelectorAll('.deleteButtons')];
+        const deleteIndex = favArr.findIndex((charName) => charName === currentChar);
+        deleteButton[i].addEventListener('click', () =>{
+            console.log('deleted');
+            ul.removeChild(list)
+            favArr.splice(deleteIndex, 1);
+            console.log(favArr);
+        })    
+    }
+    
+    
 }
 
-function deleteFavorites(x:number):void{
-    favArr.splice(x, 1);
-    printFavorites();
-}
