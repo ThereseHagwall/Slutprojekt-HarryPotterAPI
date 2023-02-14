@@ -1,12 +1,10 @@
-// import {person} from "./interface";
-
-
 //!ATT GÖRA!!!!!
-//? Lägga till sökfunktion där användaren kan hitta en specifik karaktär eller en specifik trollformel. 
+//TODO Lägga till sökfunktion där användaren kan hitta en specifik karaktär eller en specifik trollformel. 
 //* Favorit knapp för att lägga till sina favoriter i. 
 //* Fixa radioknapparna så dem syns bättre, ligger över korten och ligger på rad inte i column.
-//? Skapa en delete knapp i favoriteSectionen. Och koppla den till att ta bort ett element från arrayen.
-//? Fixa så att när du klickar på ett namn får du upp info om karaktären. Klickar man igen så försvinner infon.
+//TODO Skapa en delete knapp i favoriteSectionen. Och koppla den till att ta bort ett element från arrayen.
+//* Fixa så att när du klickar på ett namn får du upp info om karaktären. Klickar man igen så försvinner infon.
+//? Funkar Alert på mobiltelefoner?
 
 //Url to fetch from
 const baseUrl = 'https://legacy--api.herokuapp.com/api/v1/houses/';
@@ -23,6 +21,7 @@ const card = document.createElement('section');
 const charCard = document.createElement('section');
 const spellCard = document.createElement('section');
 const favoritesCard = document.createElement('section');
+const hogwartsExpressImg = document.createElement('img');
 
 const idGryffindor = 1;
 const idSlytherin = 2;
@@ -33,7 +32,6 @@ const idHogwarts = 5;
 // const loading = document.createElement("img");
 // loading.className = "loading";
 // loading.src = "loading.gif";
-
 
 //A function to fetch the information about the house the user choose.
 async function getHouseInfo(x:number):Promise <void>{
@@ -136,7 +134,7 @@ function getRadioButton():void{
                 hogwartsColorTheme()
                 getAllHouseInfo();
             }
-    });
+        });
     });
 }
 
@@ -170,7 +168,6 @@ for(let i = 1; i < allImages.length; i++) {
             label.innerHTML =  (`<input class="radiobuttons" type="radio" name="themes" value="${houseArr[i]}">${houseArr[i]}`);
             radioSection.append(label);
         }
-        
         chooseYourFavo.remove();  
         getRadioButton();
         getHouseInfo(i);
@@ -233,9 +230,9 @@ noFavorite.addEventListener('click', function(e){
         radioSection.append(label);
     }     
     
+    getAllHouseInfo();
     getRadioButton()
     favoritesSection();
-    getAllHouseInfo();
     getSpellInfo(6);
     getAllCharInfo(8);
 })
@@ -253,7 +250,6 @@ async function getAllCharInfo(x:number):Promise <void>{
     viewMore.innerHTML = 'View All';
     
     viewMore.addEventListener('click', () =>{
-        // container.innerHTML = '';
         charCard.innerHTML = "";
         getAllCharInfo(data.length);
     }) 
@@ -268,39 +264,49 @@ async function getAllCharInfo(x:number):Promise <void>{
         container.append(charCard);
         charCard.append(charHeader, list);
         
-        charName.addEventListener('click', () =>{
-            async function getCharInfo(x:string):Promise <void>{
-                const response = await fetch(allCharUrl);
-                const data = await response.json();
-                const info = document.createElement('section');
-                info.className = 'Info';
-                const img = document.createElement('img');
-                img.className = 'Info';
-                const favButton = document.createElement('button');
-                favButton.innerHTML = 'Add to favorites';
-                favButton.className = 'Info';
-                for(let i = 0; i < data.length; i++){
-                    if(x === data[i].name){
-                        charName.append(info, img, favButton);
-                        info.innerHTML = `Actor: ${data[i].actor}<br>Gender: ${data[i].gender}<br>House: ${data[i].house}<br>Acestry: ${data[i].ancestry}<br>Species: ${data[i].species}<br>Patronus: ${data[i].patronus}`;
-                        img.src = data[i].image;
-                        if(data[i].image === ""){
-                            charName.removeChild(img);
-                        }
-                        favButton.addEventListener('click', () =>{
-                            let find = favArr.indexOf(data[i].name);
-                            if(find !== -1){
-                                alert('This Carachter are allready in your favorites.')
-                            }else{
-                                favArr.push(data[i].name);
-                                printFavorites();
-                            }
-                        })
+        async function getCharInfo(x:string):Promise <void>{
+            const response = await fetch(allCharUrl);
+            const data = await response.json();
+            const info = document.createElement('section');
+            const img = document.createElement('img');
+            const favButton = document.createElement('button');
+            favButton.innerHTML = 'Add to favorites';
+            info.className = 'Info hidden';
+            favButton.className = 'Info hidden';
+            img.className = 'Info hidden';
+            for(let i = 0; i < data.length; i++){
+                if(x === data[i].name){
+                    charName.append(info, img, favButton);
+                    info.innerHTML = `Actor: ${data[i].actor}<br>Gender: ${data[i].gender}<br>House: ${data[i].house}<br>Acestry: ${data[i].ancestry}<br>Species: ${data[i].species}<br>Patronus: ${data[i].patronus}`;
+                    img.src = data[i].image;
+                    if(data[i].image === ""){
+                        charName.removeChild(img);
                     }
+                    favButton.addEventListener('click', () =>{
+                        let find = favArr.indexOf(data[i].name);
+                        if(find !== -1){
+                            alert('This Carachter are allready in your favorites.')
+                        }else{
+                            favArr.push(data[i].name);
+                            printFavorites();
+                        }
+                    })
+                    
                 }
             }
-            getCharInfo(charName.innerText);
-        })
+            charName.addEventListener('click', () =>{
+                if(info.className === "Info"){
+                    info.className = "Info hidden";
+                    img.className = "Info hidden";
+                    favButton.className = "Info hidden";
+                }else{
+                    info.className = "Info";
+                    img.className = "Info";
+                    favButton.className = "Info";
+                }
+            })
+        }
+        getCharInfo(charName.innerText);
     }
     charCard.append(viewMore);
 }
@@ -320,16 +326,15 @@ async function getSpellInfo(x:number):Promise <void>{
     //Loop through 5 spells to write on the card
     for(let i = 0; i < x; i++){
         let spellName = document.createElement('p');
-        spellName.innerHTML += `<li>${data[i].name}</li> Description: ${data[i].description}`;
+        spellName.innerHTML += `<li>Name: ${data[i].name}</li> Description: ${data[i].description}`;
         
         list.append(spellName);
         spellCard.append(spellHeader, list);
         container.append(spellCard);
     }
     
-    viewMore.addEventListener('click', (e) =>{
-        e.preventDefault();
-        container.innerHTML = '';
+    viewMore.addEventListener('click', () =>{
+        spellCard.innerHTML = '';
         getSpellInfo(data.length);
     })
     spellCard.append(viewMore);
@@ -348,11 +353,20 @@ function printFavorites():void{
     favoritesCard.append(list);
 
     favArr.forEach(element =>{
-        list.innerHTML = `<li>${element} <button class="deleteButton">Delete</button)`;
+        list.innerHTML = `<li>${element} <button class="deleteButtons">Delete</button)`;
+        const deleteButton = [...document.querySelectorAll('.deleteButtons')];
+        for(let i = 0; i < deleteButton.length; i++){
+            deleteButton[i].addEventListener('click', () =>{
+                console.log('deleted');
+                list.innerHTML = "";
+                deleteFavorites(i);
+                console.log(favArr);
+            })    
+        }
     })
-    const deleteButton = document.querySelector('.deleteButton') as HTMLButtonElement;
-    deleteButton.addEventListener('click', () =>{
-        console.log('deleted');
-        console.log('hit')
-    })    
+}
+
+function deleteFavorites(x:number):void{
+    favArr.splice(x, 1);
+    printFavorites();
 }
