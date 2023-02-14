@@ -6,7 +6,6 @@
 body{
     display: flex;
     flex-direction: column;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: u.$bgcolor;
 }
 
@@ -84,6 +83,8 @@ button{
     align-items: center;
     margin: 0 auto;
     height: fit-content;
+    word-wrap: break-word;
+    max-width: 30em;
 
     li{
         font-family: u.$fontInfo;
@@ -105,7 +106,8 @@ button{
     font-size: 17px;
     align-items: center;
     margin: 0 auto;
-    max-height: fit-content;
+    contain: content;
+    // max-height:400px;
 
     img{
         width: 30%;
@@ -121,7 +123,7 @@ button{
         @extend li
     }
 
-    .deleteButton{
+    .deleteButtons{
         font-size: 20px;
         height: fit-content;
         width: fit-content;
@@ -134,13 +136,15 @@ button{
     padding: 0 1em 0 1em;
     align-items: center;
     margin: 0 auto;
-    font-size: 17px;
-    height: fit-content;
-    max-width: 30em;
+    font-size: 15px;
+    max-height: 500px;
+    max-width: 20em;
+    line-height: 1;
     
     img {
-        width: 30%;
-        height: 40%;
+        
+        width: 40%;
+        height: 20%;
     }
 
     p{
@@ -154,9 +158,14 @@ button{
 
 .allHousesSection{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     color: #ffff;
     margin: 0 auto;
+
+    img {
+        height: 45%;
+        width: 45%;
+    }
 }
 
 .hidden{
@@ -172,7 +181,6 @@ section{
 }
 
 .imagesSection{
-    
     display: flex;
     flex-direction: row;
     
