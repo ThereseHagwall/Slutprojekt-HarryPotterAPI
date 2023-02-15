@@ -1,8 +1,9 @@
-//!ATT GÖRA!!!!!
-//TODO Lägga till sökfunktion där användaren kan hitta en specifik karaktär eller en specifik trollformel. 
+//TODO ATT GÖRA!!!!!
+//! Lägga till sökfunktion där användaren kan hitta en specifik karaktär eller en specifik trollformel. 
 //* Favorit knapp för att lägga till sina favoriter i. 
 //* Fixa radioknapparna så dem syns bättre, ligger över korten och ligger på rad inte i column.
-//TODO Skapa en delete knapp i favoriteSectionen. Och koppla den till att ta bort ett element från arrayen.
+//* Skapa en delete knapp i favoriteSectionen. Och koppla den till att ta bort ett element från arrayen.
+//! Fixa då att delete knappen fungerar felfritt.
 //* Fixa så att när du klickar på ett namn får du upp info om karaktären. Klickar man igen så försvinner infon.
 //? Funkar Alert på mobiltelefoner?
 
@@ -301,7 +302,7 @@ async function getAllCharInfo(x:number):Promise <void>{
             for(let i = 0; i < data.length; i++){
                 if(x === data[i].name){
                     charName.append(info, img, favButton);
-                    info.innerHTML = `Actor: ${data[i].actor}<br>Gender: ${data[i].gender}<br>House: ${data[i].house}<br>Acestry: ${data[i].ancestry}<br>Species: ${data[i].species}<br>Patronus: ${data[i].patronus}`;
+                    info.innerHTML = `Actor: ${data[i].actor}<br>Gender: ${data[i].gender}<br>House: ${data[i].house}<br>Ancestry: ${data[i].ancestry}<br>Species: ${data[i].species}<br>Patronus: ${data[i].patronus}`;
                     img.src = data[i].image;
                     if(data[i].image === ""){
                         charName.removeChild(img);
