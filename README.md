@@ -50,5 +50,5 @@ Navigate to the folder where you want to put the repository.
 
 ## Follow me!
 
--   [Github (https://github.com/ThereseHagwall)]
--   [LinkedIn (https://www.linkedin.com/in/theresehagwall/)]
+-   [Github Profil] (https://github.com/ThereseHagwall)
+-   [LinkedIn Profil] (https://www.linkedin.com/in/theresehagwall/)
