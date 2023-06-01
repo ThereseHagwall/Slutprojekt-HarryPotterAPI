@@ -1,0 +1,46 @@
+@import url(https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Lobster&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Pirata+One&display=swap);
+img {
+  width: 370px;
+  height: 370px;
+  border-radius: 200px;
+}
+img:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+img:active {
+  position: relative;
+  top: 4px;
+}
+@media (max-width: 56.25em) {
+  img {
+    width: 300px;
+    height: 300px;
+  }
+}
+@media (max-width: 43.75em) {
+  img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+#gryffindor:hover {
+  background-color: #A50D0E;
+}
+
+#slytherin:hover {
+  background-color: #114610;
+}
+
+#ravenclaw:hover {
+  background-color: #065C7E;
+}
+
+#hufflepuff:hover {
+  background-color: #AF8410;
+}
+
+/*# sourceMappingURL=index.css.map */

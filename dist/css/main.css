@@ -1,0 +1,328 @@
+@import url(https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Lobster&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Pirata+One&display=swap);
+#header {
+  display: flex;
+  justify-content: center;
+  font-family: "Pirata One", cursive;
+  font-size: 130px;
+  max-height: 200px;
+  -webkit-text-stroke: 0.01px black;
+  /* Create the gradient. */
+  background-image: linear-gradient(0.25turn, #740001, #1a472a, #ecb939, #0e1a40);
+  /* Set the background size and repeat properties. */
+  background-size: 54%;
+  background-repeat: repeat;
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  margin: 0;
+}
+@media (max-width: 56.25em) {
+  #header {
+    font-size: 100px;
+    text-align: center;
+  }
+}
+@media (max-width: 43.75em) {
+  #header {
+    font-size: 70px;
+    text-align: center;
+  }
+}
+
+h2 {
+  font-family: "Pirata One", cursive;
+  font-size: 64px;
+  text-align: center;
+  margin-bottom: 0 auto;
+  margin-top: 10px;
+  color: black;
+}
+@media (max-width: 56.25em) {
+  h2 {
+    font-size: 35px;
+  }
+}
+
+h3 {
+  font-size: 40px;
+  font-family: "Lobster", cursive;
+  margin: 0 auto;
+}
+
+img {
+  width: 370px;
+  height: 370px;
+  border-radius: 200px;
+}
+img:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+img:active {
+  position: relative;
+  top: 4px;
+}
+@media (max-width: 56.25em) {
+  img {
+    width: 300px;
+    height: 300px;
+  }
+}
+@media (max-width: 43.75em) {
+  img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+#gryffindor:hover {
+  background-color: #A50D0E;
+}
+
+#slytherin:hover {
+  background-color: #114610;
+}
+
+#ravenclaw:hover {
+  background-color: #065C7E;
+}
+
+#hufflepuff:hover {
+  background-color: #AF8410;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #726255;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 4em 0 4em 0;
+}
+@media (max-width: 43.75em) {
+  .container {
+    padding: 3em 0 3em 0;
+  }
+}
+
+button {
+  font-family: "Pirata One", cursive;
+  background-color: #F6DC4F;
+  border-radius: 20px;
+  width: 20rem;
+  height: 5rem;
+  font-size: 36px;
+  border: 3px outset grey;
+  align-self: center;
+}
+button:active {
+  position: relative;
+  left: 3px;
+  top: 3px;
+}
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 25px 0;
+}
+@media (max-width: 43.75em) {
+  button {
+    width: 10rem;
+    height: 2.5rem;
+    font-size: 24px;
+  }
+}
+
+.charCard {
+  display: flex;
+  flex-direction: column;
+  border: 10px solid #d3a625;
+  padding: 0 3em 0 3em;
+  background-color: #740001;
+  align-items: center;
+  font-size: 17px;
+  color: white;
+  margin: 0 auto;
+  height: fit-content;
+}
+.charCard li, .charCard p {
+  font-family: "DM Serif Display", serif;
+}
+.spellCard {
+  display: flex;
+  flex-direction: column;
+  border: 10px solid #372e29;
+  padding: 0 2em 0 2em;
+  background-color: #ecb939;
+  color: white;
+  font-size: 17px;
+  align-items: center;
+  margin: 0 auto;
+  height: fit-content;
+  word-wrap: break-word;
+  max-width: 30em;
+}
+.spellCard li, .spellCard p {
+  font-family: "DM Serif Display", serif;
+}
+.favoriteCard {
+  display: flex;
+  flex-direction: column;
+  border: 10px solid #aaaaaa;
+  padding: 0 3em 0 3em;
+  background-color: #1a472a;
+  color: white;
+  font-size: 17px;
+  align-items: center;
+  margin: 0 auto;
+  contain: content;
+}
+.favoriteCard img {
+  width: 30%;
+  height: 40%;
+}
+.favoriteCard li, .favoriteCard p {
+  font-family: "DM Serif Display", serif;
+}
+.favoriteCard .deleteButtons {
+  font-size: 20px;
+  height: fit-content;
+  width: fit-content;
+}
+
+.houseCardSection {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em 0 1em;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 15px;
+  max-height: 500px;
+  max-width: 20em;
+  line-height: 1;
+}
+.houseCardSection img {
+  width: 40%;
+  height: 20%;
+}
+.houseCardSection p {
+  word-wrap: break-word;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "DM Serif Display", serif;
+}
+
+.allHousesSection {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  margin: 0 auto;
+}
+.allHousesSection img {
+  height: 45%;
+  width: 45%;
+}
+@media (max-width: 43.75em) {
+  .allHousesSection {
+    flex-direction: column;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+section ul p {
+  cursor: pointer;
+}
+
+.imagesSection {
+  display: flex;
+  flex-direction: row;
+  gap: 5em;
+  flex-wrap: wrap;
+}
+@media (max-width: 43.75em) {
+  .imagesSection {
+    gap: 4em;
+    justify-content: center;
+  }
+}
+
+.gryffindor {
+  background-color: #740001;
+  border: 10px solid #d3a625;
+  color: white;
+}
+
+.slytherin {
+  background-color: #1a472a;
+  border: 10px solid #aaaaaa;
+  color: white;
+}
+
+.ravenclaw {
+  background-color: #0e1a40;
+  border: 10px solid #946b2d;
+  color: white;
+}
+
+.hufflepuff {
+  background-color: #ecb939;
+  border: 10px solid #372e29;
+  color: #372E29;
+}
+
+.hogwarts.charCard {
+  background-color: #740001;
+  border: 10px solid #d3a625;
+}
+.hogwarts.spellCard {
+  background-color: #1a472a;
+  border: 10px solid #aaaaaa;
+}
+.hogwarts.favoriteCard {
+  background-color: #ecb939;
+  border: 10px solid #372e29;
+  color: #372e29;
+}
+
+.radioSection {
+  display: flex;
+  font-size: 16px;
+  margin-left: 30%;
+  margin-right: 30%;
+  align-items: center;
+}
+@media (max-width: 43.75em) {
+  .radioSection {
+    flex-direction: column;
+  }
+}
+
+p img {
+  width: 10em;
+  height: 10em;
+}
+p button {
+  font-size: 20px;
+  height: fit-content;
+  width: fit-content;
+}
+
+#searchButton {
+  width: fit-content;
+  height: fit-content;
+  font-size: 20px;
+}
+
+/*# sourceMappingURL=main.css.map */
